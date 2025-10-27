@@ -168,7 +168,7 @@ export default function EasyWayHero() {
             }}
           >
             {/* White Circle that follows cursor */}
-                      {circlePos.show && (
+            {circlePos.show && (
               <span
                 className="absolute pointer-events-none"
                 style={{
@@ -232,9 +232,19 @@ export default function EasyWayHero() {
           </div>
         </div>
 
-              {/* <div className='relative w-full h-[500px] lg:h-[700px] flex items-center justify-center'>
-                <img src="/Images/slide1.png" alt="" />
-              </div> */}
+        <div className='relative w-full h-[500px] lg:h-[700px] flex items-center justify-center'>
+          {/* <img src="/Images/slide1.png" alt="" /> */}
+
+          <video
+            src="/Images/slide2.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          ></video>
+
+        </div>
 
         {/* RIGHT SIDE - ANIMATED VISUAL */}
         <div
