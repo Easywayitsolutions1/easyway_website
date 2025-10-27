@@ -7,6 +7,7 @@ export default function Header() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredSection, setHoveredSection] = useState(null);
   const leftContentRef = useRef(null);
 
   // Mouse move parallax when menu is open
@@ -58,7 +59,29 @@ export default function Header() {
       'Services': '03',
       'Contact Us': '04',
     };
-    return map[activeSection] || '01';
+    return map[hoveredSection || activeSection] || '01';
+  };
+
+  const getSectionContent = () => {
+    const content = {
+      'Home': {
+        title: 'Welcome',
+        description: 'Discover our innovative solutions and creative approach to design'
+      },
+      'About Us': {
+        title: 'Our Story',
+        description: 'Learn about our journey, values, and the team behind our success'
+      },
+      'Services': {
+        title: 'What We Do',
+        description: 'Explore our comprehensive range of professional services and solutions'
+      },
+      'Contact Us': {
+        title: 'Get In Touch',
+        description: 'Connect with us to start your next project or ask any questions'
+      },
+    };
+    return content[hoveredSection || activeSection] || content['Home'];
   };
 
   const menuItems = [
@@ -175,9 +198,9 @@ export default function Header() {
 
       {/* Fixed Header */}
       <header className="fixed top-0 w-full z-30 flex justify-center">
-        <nav className="flex w-full max-w-7xl justify-between items-center p-4">
+        <nav className="flex w-full max-w-[95%] justify-between items-center p-4">
           <a href="/">
-            <img src="/Images/blue_logo.png" alt="Logo" className="h-20 transition-opacity duration-300" />
+            <img src="/Images/logo.png" alt="Logo" className="h-20 transition-opacity duration-300" />
           </a>
 
           <button
@@ -186,17 +209,17 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             <span
-              className="hamburger-line block w-6 h-0.5 my-1 bg-black"
+              className="hamburger-line block w-6 h-0.5 my-1 bg-white"
               style={{
                 transform: (isMenuOpen || isClosing) ? 'rotate(45deg) translateY(10px)' : 'none',
               }}
             />
             <span
-              className="hamburger-line block w-6 h-0.5 my-1 bg-black"
+              className="hamburger-line block w-6 h-0.5 my-1 bg-white"
               style={{ opacity: (isMenuOpen || isClosing) ? 0 : 1 }}
             />
             <span
-              className="hamburger-line block w-6 h-0.5 my-1 bg-black"
+              className="hamburger-line block w-6 h-0.5 my-1 bg-white"
               style={{
                 transform: (isMenuOpen || isClosing) ? 'rotate(-45deg) translateY(-10px)' : 'none',
               }}
@@ -218,7 +241,7 @@ export default function Header() {
         >
           <div className="text-center w-full max-w-xl">
             <div
-              className="text-9xl font-black text-gray-200"
+              className="text-9xl font-black text-gray-200 mb-8"
               style={{
                 fontSize: 'clamp(6rem, 12vw, 10rem)',
                 textShadow: '0 10px 30px rgba(0,0,0,0.1)',
@@ -228,6 +251,34 @@ export default function Header() {
               }}
             >
               {getSectionNumber()}
+            </div>
+            
+            {/* Section Content */}
+            <div 
+              className="transition-all duration-500"
+              style={{
+                opacity: hoveredSection ? 1 : 0.7,
+                transform: hoveredSection ? 'translateY(0)' : 'translateY(10px)',
+              }}
+            >
+              <h3 
+                className="text-4xl font-bold mb-4"
+                style={{
+                  color: '#101c27',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                }}
+              >
+                {getSectionContent().title}
+              </h3>
+              <p 
+                className="text-lg leading-relaxed"
+                style={{
+                  color: '#101c27',
+                  opacity: 0.7,
+                }}
+              >
+                {getSectionContent().description}
+              </p>
             </div>
           </div>
         </div>
@@ -294,8 +345,14 @@ export default function Header() {
                 <a
                   key={i}
                   href={item.path}
-                  onMouseEnter={() => setHoveredIndex(i)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  onMouseEnter={() => {
+                    setHoveredIndex(i);
+                    setHoveredSection(item.name);
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredIndex(null);
+                    setHoveredSection(null);
+                  }}
                   className="inline-flex overflow-hidden font-bold text-[50px] tracking-[10px] no-underline relative"
                   style={{
                     WebkitTextStroke: "1px white",

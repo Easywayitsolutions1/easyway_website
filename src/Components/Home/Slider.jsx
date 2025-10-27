@@ -3,14 +3,7 @@ import { Code2, Palette, Smartphone, Eye, Zap, Layers, ArrowRight } from 'lucide
 
 export default function EasyWayHero() {
   return (
-    <div className="relative w-full h-screen bg-white overflow-hidden flex items-center justify-center">
-      {/* Animated background */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #f0f4f8 100%)',
-        }}
-      />
+    <div className="relative w-full h-screen bg-[#101c27] overflow-hidden flex items-center justify-center">
       
       {/* Animated gradient blobs */}
       <div 
@@ -33,18 +26,7 @@ export default function EasyWayHero() {
         
         {/* LEFT SIDE - TEXT CONTENT */}
         <div className="text-left">
-          {/* Badge with animation */}
-          <div
-            className="inline-flex items-center gap-2 mb-6 px-5 py-3 rounded-full backdrop-blur-sm"
-            style={{
-              background: 'rgba(29, 45, 57, 0.08)',
-              border: '1px solid rgba(29, 45, 57, 0.15)',
-              animation: 'slideInDown 0.8s ease-out'
-            }}
-          >
-            <Zap size={16} style={{ color: '#1d2d39' }} />
-            <span className="text-sm font-bold" style={{ color: '#1d2d39' }}>Innovative Solutions</span>
-          </div>
+         
 
           {/* Main heading with highlights */}
           <h1 
@@ -53,29 +35,13 @@ export default function EasyWayHero() {
               animation: 'slideInDown 0.8s ease-out 0.15s both'
             }}
           >
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #1d2d39 0%, #1d2d39 40%, #0066ff 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontSize: 'inherit',
-                fontWeight: 'inherit'
-              }}
+            <span className='text-white'
             >
               Web Design
             </span>
             <br />
-            <span style={{ color: '#1d2d39' }}>& </span>
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #0066ff 0%, #1d2d39 60%, #1d2d39 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontSize: 'inherit',
-                fontWeight: 'inherit'
-              }}
+            <span style={{ color: 'white' }}>& </span>
+            <span className='text-white'
             >
               Development
             </span>
@@ -85,7 +51,7 @@ export default function EasyWayHero() {
           <p 
             className="text-lg md:text-xl mb-10 leading-relaxed"
             style={{
-              color: '#555555',
+              color: 'white',
               animation: 'slideInUp 0.8s ease-out 0.3s both'
             }}
           >

@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <div className='bg-[#101c27]'>
             <Header />
-            {/* <Slider /> */}
+            <Slider />
         </div>
     )
 }
