@@ -30,21 +30,61 @@ export default function EasyWayHero() {
 
   const [circlePos, setCirclePos] = useState({ x: 0, y: 0, show: false });
   const headingRef = useRef(null);
+  const rafRef = useRef(null);
+  const targetPos = useRef({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
     if (headingRef.current) {
       const rect = headingRef.current.getBoundingClientRect();
-      setCirclePos({
+      targetPos.current = {
         x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-        show: true
-      });
+        y: e.clientY - rect.top
+      };
+
+      if (!circlePos.show) {
+        setCirclePos({
+          x: targetPos.current.x,
+          y: targetPos.current.y,
+          show: true
+        });
+      }
     }
   };
 
   const handleMouseLeave = () => {
     setCirclePos(prev => ({ ...prev, show: false }));
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
   };
+
+  useEffect(() => {
+    const animate = () => {
+      if (circlePos.show) {
+        setCirclePos(prev => {
+          const dx = targetPos.current.x - prev.x;
+          const dy = targetPos.current.y - prev.y;
+
+          return {
+            ...prev,
+            x: prev.x + dx * 0.15,
+            y: prev.y + dy * 0.15
+          };
+        });
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    if (circlePos.show) {
+      rafRef.current = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [circlePos.show]);
 
   return (
     <div className="relative w-full min-h-screen bg-[#101c27] overflow-hidden flex items-center justify-center py-12 lg:py-0">
@@ -180,13 +220,12 @@ export default function EasyWayHero() {
                   borderRadius: '50%',
                   background: 'white',
                   mixBlendMode: 'difference',
-                  transition: 'left 0.15s ease-out, top 0.15s ease-out, width 0.3s ease, height 0.3s ease',
                   zIndex: 10
                 }}
               />
             )}
 
-            <span style={{ position: 'relative', zIndex: 5 }}>
+            <span className='heading-text' style={{ position: 'relative', zIndex: 5 }}>
               Web Design
               <br />
               & Development
@@ -210,40 +249,14 @@ export default function EasyWayHero() {
               animation: 'slideInUp 0.8s ease-out 0.6s both'
             }}
           >
-            <button
-              className="px-8 py-4 font-bold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 text-lg text-white"
-              style={{
-                background: 'linear-gradient(135deg, #1d2d39 0%, #2d3f51 100%)',
-                boxShadow: '0 8px 25px rgba(29, 45, 57, 0.3)'
-              }}
-            >
-              Get Started <ArrowRight size={20} />
+            
+
+            <button className="group relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-white text-white hover:text-black overflow-hidden transition-colors duration-500 z-10">
+              <span className="relative z-10 flex justify-between items-center gap-3">Get Started <ArrowRight size={20} /></span>
+              <span className="absolute top-full left-full w-[250px] h-[150px] bg-white rounded-full transition-all duration-700 ease-in-out group-hover:top-[-30px] group-hover:left-[-30px]"></span>
             </button>
-            <button
-              className="px-8 py-4 font-bold rounded-xl transition-all duration-300 transform hover:scale-105 text-lg border-2 hover:bg-white/5"
-              style={{
-                color: 'white',
-                borderColor: 'white',
-                background: 'transparent'
-              }}
-            >
-              Learn More
-            </button>
+
           </div>
-        </div>
-
-        <div className='relative w-full h-[500px] lg:h-[700px] flex items-center justify-center'>
-          {/* <img src="/Images/slide1.png" alt="" /> */}
-
-          <video
-            src="/Images/slide2.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{ width: "100%", height: "auto", objectFit: "cover" }}
-          ></video>
-
         </div>
 
         {/* RIGHT SIDE - ANIMATED VISUAL */}
