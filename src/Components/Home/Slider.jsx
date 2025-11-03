@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { ArrowRight } from 'lucide-react';
-import Slide1Image from './slide1Image';
+import Slide1Image from './Slide1Image';
 import Slide2Image from './Slide2Image';
 import Slide3Image from './Slide3Image';
 

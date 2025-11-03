@@ -1,7 +1,7 @@
 // src/components/VideoEditingSceneOptimized.jsx
 import React, { useEffect, useState } from 'react';
 
-export default function VideoEditingSceneOptimized() {
+export default function Slide3Image() {
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
