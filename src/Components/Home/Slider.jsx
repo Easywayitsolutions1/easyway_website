@@ -281,9 +281,9 @@ const slides = [
   {
     title: (
       <>
-        Web Design
+        Strategic Design, 
         <br />
-        & Development
+        Powerful Development
       </>
     ),
     subtitle:
@@ -297,9 +297,9 @@ const slides = [
   {
     title: (
       <>
-        Graphic Design
+        Smart Design for 
         <br />
-        & UI/UX
+        Digital Success
       </>
     ),
     subtitle:
@@ -313,9 +313,9 @@ const slides = [
   {
     title: (
       <>
-        Video Editing
+        Professional Video Editing 
         <br />
-        & Production
+        for Every Need
       </>
     ),
     subtitle:
@@ -334,11 +334,13 @@ export default function HeroSlider() {
   const targetPos = useRef(slides.map(() => ({ x: 0, y: 0 })));
   const rafRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [circlePositions, setCirclePositions] = useState(slides.map(() => ({ x: 0, y: 0, show: false })));
+  const [circlePos, setCirclePos] = useState({ x: 0, y: 0, show: false });
 
-  // Handle mouse move on heading
+  // ---------- Mouse handlers ----------
   const handleMouseMove = (e, idx) => {
+    if (idx !== activeIndex) return;
     if (!headingRefs.current[idx]) return;
+
     const rect = headingRefs.current[idx].getBoundingClientRect();
     const newTarget = {
       x: e.clientX - rect.left,
@@ -347,59 +349,35 @@ export default function HeroSlider() {
     targetPos.current[idx] = newTarget;
 
     if (!circleStates.current[idx].show) {
-      circleStates.current[idx] = { 
-        x: newTarget.x, 
-        y: newTarget.y, 
-        show: true 
-      };
-      setCirclePositions(prev => {
-        const updated = [...prev];
-        updated[idx] = { x: newTarget.x, y: newTarget.y, show: true };
-        return updated;
-      });
+      circleStates.current[idx].show = true;
+      setCirclePos({ x: newTarget.x, y: newTarget.y, show: true });
     }
   };
 
   const handleMouseLeave = (idx) => {
+    if (idx !== activeIndex) return;
     circleStates.current[idx].show = false;
-    setCirclePositions(prev => {
-      const updated = [...prev];
-      updated[idx] = { ...updated[idx], show: false };
-      return updated;
-    });
+    setCirclePos(prev => ({ ...prev, show: false }));
   };
 
-  // Smooth animation loop
+  // ---------- Animation loop (lerp) ----------
   useEffect(() => {
     let animationId;
 
     const animate = () => {
-      let needsUpdate = false;
+      const idx = activeIndex;
+      const state = circleStates.current[idx];
+      const target = targetPos.current[idx];
 
-      slides.forEach((_, idx) => {
-        const state = circleStates.current[idx];
-        const target = targetPos.current[idx];
+      if (state.show && target) {
+        const dx = target.x - state.x;
+        const dy = target.y - state.y;
+        const lerpFactor = 0.2;
 
-        if (state.show && target) {
-          const dx = target.x - state.x;
-          const dy = target.y - state.y;
+        state.x += dx * lerpFactor;
+        state.y += dy * lerpFactor;
 
-          // Smoother easing with higher lerp factor
-          const lerpFactor = 0.2;
-          
-          state.x += dx * lerpFactor;
-          state.y += dy * lerpFactor;
-
-          needsUpdate = true;
-        }
-      });
-
-      if (needsUpdate) {
-        setCirclePositions(slides.map((_, idx) => ({
-          x: circleStates.current[idx].x,
-          y: circleStates.current[idx].y,
-          show: circleStates.current[idx].show
-        })));
+        setCirclePos({ x: state.x, y: state.y, show: true });
       }
 
       animationId = requestAnimationFrame(animate);
@@ -408,10 +386,14 @@ export default function HeroSlider() {
     animationId = requestAnimationFrame(animate);
     rafRef.current = animationId;
 
-    return () => {
-      if (animationId) cancelAnimationFrame(animationId);
-    };
-  }, []);
+    return () => cancelAnimationFrame(animationId);
+  }, [activeIndex]);
+
+  // Reset circle when slide changes
+  useEffect(() => {
+    circleStates.current[activeIndex] = { x: 0, y: 0, show: false };
+    setCirclePos({ x: 0, y: 0, show: false });
+  }, [activeIndex]);
 
   return (
     <div className="relative w-full min-h-screen bg-[#101c27] overflow-hidden flex items-center justify-center py-12 lg:py-0">
@@ -528,13 +510,13 @@ export default function HeroSlider() {
                   onMouseMove={(e) => handleMouseMove(e, idx)}
                   onMouseLeave={() => handleMouseLeave(idx)}
                 >
-                  {/* White Circle Follower */}
-                  {circlePositions[idx].show && (
+                  {/* Circle – only rendered for the active slide */}
+                  {activeIndex === idx && circlePos.show && (
                     <span
                       className="absolute pointer-events-none"
                       style={{
-                        left: circlePositions[idx].x,
-                        top: circlePositions[idx].y,
+                        left: circlePos.x,
+                        top: circlePos.y,
                         transform: 'translate(-50%, -50%)',
                         width: '150px',
                         height: '150px',
