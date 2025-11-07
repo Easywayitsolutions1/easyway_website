@@ -8,7 +8,7 @@ export default function About2() {
   // Track scroll progress relative to this section
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "center start"], // smoother timing
+    offset: ["start end", "center start"], // animation starts when section enters viewport
   });
 
   // Animate Y & opacity for whole group entrance
@@ -16,14 +16,14 @@ export default function About2() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   // Left & right image horizontal movement
-  const leftX = useTransform(scrollYProgress, [0.3, 1], [0, -900]);
-  const rightX = useTransform(scrollYProgress, [0.3, 1], [0, 900]);
+  const leftX = useTransform(scrollYProgress, [0.3, 1], [0, -700]);
+  const rightX = useTransform(scrollYProgress, [0.3, 1], [0, 700]);
 
-  // Subtle rotation for realism
-  const leftRotate = useTransform(scrollYProgress, [0.3, 1], [0, -8]);
-  const rightRotate = useTransform(scrollYProgress, [0.3, 1], [0, 8]);
+  // Increased rotation (more tilt by default + stronger at end)
+  const leftRotate = useTransform(scrollYProgress, [0, 0.3, 1], [-12, -10, -18]);
+  const rightRotate = useTransform(scrollYProgress, [0, 0.3, 1], [12, 10, 18]);
 
-  // Center image stays, but slightly scales up
+  // Center image stays with slight zoom
   const centerScale = useTransform(scrollYProgress, [0.3, 1], [1, 1.05]);
 
   return (
