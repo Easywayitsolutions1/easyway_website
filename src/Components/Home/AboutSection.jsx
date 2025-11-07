@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ArrowRight } from "lucide-react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
+import CircularText from "../../Common Components/CircularText";
 
 /* --------------------------------------------------------------
    ULTRA-SMOOTH, SLOW IMAGE REVEAL (GPU ONLY, CINEMATIC)
@@ -155,8 +156,8 @@ export default function AboutSection() {
                         <ScrollTextReveal text=" We Create Digital Experiences that Transform Ideas into Impact." className="font-bold text-4xl lg:text-5xl" />
                     </h2>
 
-                    <p className="text-gray-400 mb-8 max-w-xl">
-                        At <span className="text-white font-semibold">My EasyWay IT Solutions</span>, we blend
+                    <p className="text-white mb-8 max-w-xl">
+                        At <span className="text-white font-semibold">EasyWay IT Solutions</span>, we blend
                         innovation with design to build powerful digital experiences that drive real growth.
                         From <span className="text-white font-medium">Web Development</span> and
                         <span className="text-white font-medium"> UI/UX Design</span> to
@@ -179,6 +180,18 @@ export default function AboutSection() {
 
                 {/* RIGHT IMAGES STACK */}
                 <div className="relative flex justify-center items-center">
+
+
+                    <div className="absolute -left-[5%] bottom-[130px] z-50 bg-[#101a24] rounded-full">
+                        <CircularText
+                            text="YEARS OF EXPERIENCE "
+                            onHover="speedUp"
+                            spinDuration={20}
+                            className="custom-class"
+                        />
+                        <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">1 +</p>
+                    </div>
+
                     {/* Big image */}
                     <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-[#101a24] overflow-hidden">
                         <ImageReveal
