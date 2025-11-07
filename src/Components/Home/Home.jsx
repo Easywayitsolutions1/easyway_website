@@ -5,6 +5,7 @@ import GraphicUIUXHero from './GraphicUIUXHero'
 import VideoEditingHero from './VideoEditingHero'
 import AboutSection from './AboutSection'
 import Testing from '../../Common Components/Testing'
+import About2 from './About2'
 
 export default function Home() {
     return (
@@ -12,7 +13,8 @@ export default function Home() {
             <Header />
             {/* <Testing /> */}
             <Slider />
-            <AboutSection />
+            <About2 />
+            {/* <AboutSection /> */}
             {/* <GraphicUIUXHero /> */}
             {/* <VideoEditingHero /> */}
         </div>
