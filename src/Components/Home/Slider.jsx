@@ -203,7 +203,7 @@ export default function HeroSlider() {
         slidesPerView={1}
         loop
         autoplay={{
-          delay: 5000,
+          delay: 3000,
           disableOnInteraction: false, // keep autoplay even after manual nav
         }}
         pagination={{ clickable: true }}

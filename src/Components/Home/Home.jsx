@@ -14,7 +14,7 @@ export default function Home() {
             {/* <Testing /> */}
             <Slider />
             <About2 />
-            {/* <AboutSection /> */}
+            <AboutSection />
             {/* <GraphicUIUXHero /> */}
             {/* <VideoEditingHero /> */}
         </div>
