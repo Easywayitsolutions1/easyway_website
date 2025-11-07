@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './Header'
+import Header from '../../Common Components/Header'
 import Slider from './Slider'
 import GraphicUIUXHero from './GraphicUIUXHero'
 import VideoEditingHero from './VideoEditingHero'

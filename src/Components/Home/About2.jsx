@@ -1,38 +1,69 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollWordReveal from "../../Common Components/ScrollWordReveal";
 
 export default function About2() {
+  const ref = useRef(null);
+
+  // Track scroll progress relative to this section
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center start"], // smoother timing
+  });
+
+  // Animate Y & opacity for whole group entrance
+  const y = useTransform(scrollYProgress, [0, 0.3], [150, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
+  // Left & right image horizontal movement
+  const leftX = useTransform(scrollYProgress, [0.3, 1], [0, -900]);
+  const rightX = useTransform(scrollYProgress, [0.3, 1], [0, 900]);
+
+  // Subtle rotation for realism
+  const leftRotate = useTransform(scrollYProgress, [0.3, 1], [0, -8]);
+  const rightRotate = useTransform(scrollYProgress, [0.3, 1], [0, 8]);
+
+  // Center image stays, but slightly scales up
+  const centerScale = useTransform(scrollYProgress, [0.3, 1], [1, 1.05]);
+
   return (
-    <div className="min-h-[100vh] w-full border flex flex-col justify-center items-center py-20 bg-[#0d1117]">
+    <div className="min-h-[120vh] w-full flex flex-col justify-center items-center py-20 bg-[#0d1117] overflow-hidden">
       <div className="w-[50%] max-w-[800px] text-center">
         {/* Scroll Word Reveal Text */}
         <ScrollWordReveal
           className="heading-text text-5xl leading-snug font-semibold text-white"
         />
 
-        {/* 3-Image Overlap Layout */}
-        <div className="relative flex justify-center items-center w-full h-[400px] mt-[150px]">
+        {/* Scroll-Aware Image Layout */}
+        <motion.div
+          ref={ref}
+          style={{ y, opacity }}
+          className="relative flex justify-center items-center w-full h-[500px] mt-[150px]"
+        >
           {/* Left Image */}
-          <img
+          <motion.img
             src="/Images/about_1.webp"
             alt="Left"
-            className="absolute w-[260px] rounded-2xl shadow-xl -rotate-6 left-[20%] top-[10%] z-0"
+            style={{ x: leftX, rotate: leftRotate }}
+            className="absolute w-auto h-[500px] rounded-2xl shadow-xl z-0"
           />
 
           {/* Center Image */}
-          <img
+          <motion.img
             src="/Images/about_2.webp"
             alt="Center"
-            className="absolute w-[300px] rounded-2xl shadow-2xl z-10"
+            style={{ scale: centerScale }}
+            className="absolute w-auto h-[600px] rounded-2xl shadow-2xl z-10"
           />
 
           {/* Right Image */}
-          <img
+          <motion.img
             src="/Images/about_3.webp"
             alt="Right"
-            className="absolute w-[260px] rounded-2xl shadow-xl rotate-6 right-[20%] top-[10%] z-0"
+            style={{ x: rightX, rotate: rightRotate }}
+            className="absolute w-auto h-[500px] rounded-2xl shadow-xl z-0"
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-// src/components/HeroSlider.jsx
 import React, { useRef, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
