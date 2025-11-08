@@ -27,7 +27,7 @@ export default function ScrollTextReveal({
   return (
     <div
       ref={ref}
-      className="flex flex-wrap leading-snug font-semibold text-white"
+      className="flex flex-wrap leading-snug font-semibold text-black"
       style={{ overflow: "hidden", lineHeight: "1.1em" }}
     >
       {chars.map((char, i) => {

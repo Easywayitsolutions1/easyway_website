@@ -139,13 +139,13 @@ export default function AboutSection() {
     }, []);
 
     return (
-        <section className="text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
+        <section className="text-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 {/* Mobile/Tablet Layout - Stack vertically */}
                 <div className="lg:hidden space-y-8 sm:space-y-10">
                     {/* Text Content - First on mobile */}
                     <div className="px-2 sm:px-4">
-                        <p className="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 tracking-wide uppercase">
+                        <p className="text-xs sm:text-sm text-gray-800 mb-2 sm:mb-3 tracking-wide uppercase">
                             About My EasyWay IT Solutions
                         </p>
 
@@ -156,13 +156,13 @@ export default function AboutSection() {
                             />
                         </h2>
 
-                        <p className="text-sm sm:text-base text-white mb-6 sm:mb-8 leading-relaxed">
-                            At <span className="text-white font-semibold">EasyWay IT Solutions</span>, we blend
+                        <p className="text-sm sm:text-base text-black mb-6 sm:mb-8 leading-relaxed">
+                            At <span className="text-black font-semibold">EasyWay IT Solutions</span>, we blend
                             innovation with design to build powerful digital experiences that drive real growth.
-                            From <span className="text-white font-medium">Web Development</span> and
-                            <span className="text-white font-medium"> UI/UX Design</span> to
-                            <span className="text-white font-medium"> Graphic Design</span> and
-                            <span className="text-white font-medium"> Video Editing</span>,
+                            From <span className="text-black font-medium">Web Development</span> and
+                            <span className="text-black font-medium"> UI/UX Design</span> to
+                            <span className="text-black font-medium"> Graphic Design</span> and
+                            <span className="text-black font-medium"> Video Editing</span>,
                             we craft solutions that help brands connect, engage, and evolve.
                             <br /><br />
                             Our team is passionate about turning your vision into a seamless digital reality —
@@ -170,7 +170,7 @@ export default function AboutSection() {
                             modern world.
                         </p>
 
-                        <button className="group relative inline-block px-6 sm:px-8 py-2.5 sm:py-3 rounded-[10px] text-sm sm:text-base font-medium border-2 border-white text-white hover:text-black overflow-hidden transition-colors duration-500 z-10">
+                        <button className="group relative inline-block px-6 sm:px-8 py-2.5 sm:py-3 rounded-[10px] text-sm sm:text-base font-medium border-2 border-white text-black hover:text-black overflow-hidden transition-colors duration-500 z-10">
                             <span className="relative z-10 flex justify-between items-center gap-2 sm:gap-3">
                                 Discover Our Work <ArrowRight size={18} className="sm:w-5 sm:h-5" />
                             </span>
@@ -181,7 +181,7 @@ export default function AboutSection() {
                     {/* Images Section - Second on mobile (below text) */}
                     <div className="relative flex justify-center items-center min-h-[380px] sm:min-h-[450px] md:min-h-[500px] mx-auto max-w-2xl">
                         {/* Circular Text Badge - Below Navbar (z-30) */}
-                        <div className="absolute -left-[5%] top-[0px] z-30 bg-[#101a24] rounded-full scale-[0.65] sm:scale-75 md:scale-90">
+                        <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full scale-[0.65] sm:scale-75 md:scale-90">
                             <CircularText
                                 text="YEARS OF EXPERIENCE "
                                 onHover="speedUp"
@@ -203,7 +203,7 @@ export default function AboutSection() {
                         </div>
 
                         {/* Medium image */}
-                        <div className="absolute right-[15%] sm:right-[18%] z-10 w-[40%] sm:w-[42%] h-[250px] sm:h-[320px] md:h-[380px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-[#101a24] overflow-hidden">
+                        <div className="absolute right-[15%] sm:right-[18%] z-10 w-[40%] sm:w-[42%] h-[250px] sm:h-[320px] md:h-[380px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
                                 src="/Images/about_2.webp"
@@ -214,7 +214,7 @@ export default function AboutSection() {
                         </div>
 
                         {/* Small image - visible on tablet+ */}
-                        <div className="absolute right-0 sm:right-[2%] hidden sm:block w-[32%] md:w-[35%] h-[220px] md:h-[280px] rounded-[50px] md:rounded-[70px] overflow-hidden border-[5px] sm:border-[6px] border-[#101a24]">
+                        <div className="absolute right-0 sm:right-[2%] hidden sm:block w-[32%] md:w-[35%] h-[220px] md:h-[280px] rounded-[50px] md:rounded-[70px] overflow-hidden border-[5px] sm:border-[6px] border-white">
                             <ImageReveal
                                 className="h-full"
                                 src="/Images/about_3.webp"
@@ -230,7 +230,7 @@ export default function AboutSection() {
                 <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
                     {/* LEFT TEXT CONTENT */}
                     <div>
-                        <p className="text-sm text-gray-400 mb-3 tracking-wide uppercase">
+                        <p className="text-sm text-gray-800 mb-3 tracking-wide uppercase">
                             About My EasyWay IT Solutions
                         </p>
 
@@ -241,13 +241,13 @@ export default function AboutSection() {
                             />
                         </h2>
 
-                        <p className="text-base text-white mb-8 max-w-xl leading-relaxed">
-                            At <span className="text-white font-semibold">EasyWay IT Solutions</span>, we blend
+                        <p className="text-base text-black mb-8 max-w-xl leading-relaxed">
+                            At <span className="text-black font-semibold">EasyWay IT Solutions</span>, we blend
                             innovation with design to build powerful digital experiences that drive real growth.
-                            From <span className="text-white font-medium">Web Development</span> and
-                            <span className="text-white font-medium"> UI/UX Design</span> to
-                            <span className="text-white font-medium"> Graphic Design</span> and
-                            <span className="text-white font-medium"> Video Editing</span>,
+                            From <span className="text-black font-medium">Web Development</span> and
+                            <span className="text-black font-medium"> UI/UX Design</span> to
+                            <span className="text-black font-medium"> Graphic Design</span> and
+                            <span className="text-black font-medium"> Video Editing</span>,
                             we craft solutions that help brands connect, engage, and evolve.
                             <br /><br />
                             Our team is passionate about turning your vision into a seamless digital reality —
@@ -255,18 +255,18 @@ export default function AboutSection() {
                             modern world.
                         </p>
 
-                        <button className="group relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-white text-white hover:text-black overflow-hidden transition-colors duration-500 z-10">
+                        <button className="group relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
                             <span className="relative z-10 flex justify-between items-center gap-3">
                                 Discover Our Work <ArrowRight size={20} />
                             </span>
-                            <span className="absolute top-full left-full w-[300px] h-[150px] bg-white rounded-full transition-all duration-700 ease-in-out group-hover:top-[-30px] group-hover:left-[-30px]" />
+                            <span className="absolute top-full left-full w-[300px] h-[150px] bg-[#101c28] rounded-full transition-all duration-700 ease-in-out group-hover:top-[-30px] group-hover:left-[-30px]" />
                         </button>
                     </div>
 
                     {/* RIGHT IMAGES STACK - Desktop only */}
                     <div className="relative flex justify-center items-center min-h-[550px]">
                         {/* Circular Text Badge - Below Navbar (z-30) */}
-                        <div className="absolute -left-[5%] top-[0px] z-30 bg-[#101a24] rounded-full">
+                        <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full">
                             <CircularText
                                 text="YEARS OF EXPERIENCE "
                                 onHover="speedUp"
@@ -277,7 +277,7 @@ export default function AboutSection() {
                         </div>
 
                         {/* Big image */}
-                        <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-[#101a24] overflow-hidden">
+                        <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
                                 src="/Images/about_1.webp"
@@ -288,7 +288,7 @@ export default function AboutSection() {
                         </div>
 
                         {/* Medium image */}
-                        <div className="absolute right-[20%] z-10 w-[40%] h-[450px] rounded-[150px] border-[10px] border-[#101a24] overflow-hidden">
+                        <div className="absolute right-[20%] z-10 w-[40%] h-[450px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
                                 src="/Images/about_2.webp"

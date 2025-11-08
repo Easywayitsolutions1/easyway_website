@@ -6,13 +6,15 @@ import VideoEditingHero from './VideoEditingHero'
 import AboutSection from './AboutSection'
 import Testing from '../../Common Components/Testing'
 import About2 from './About2'
+import Slider2 from './Slider2'
 
 export default function Home() {
     return (
-        <div className='bg-[#101c27]'>
+        <div className='bg-white'>
             <Header />
             {/* <Testing /> */}
-            <Slider />
+            {/* <Slider /> */}
+            <Slider2 />
             <About2 />
             <AboutSection />
             {/* <GraphicUIUXHero /> */}
