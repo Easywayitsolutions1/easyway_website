@@ -13,8 +13,8 @@ export default function Home() {
         <div className='bg-white'>
             <Header />
             {/* <Testing /> */}
-            <Slider />
-            {/* <Slider2 /> */}
+            {/* <Slider /> */}
+            <Slider2 />
             <About2 />
             <AboutSection />
             {/* <GraphicUIUXHero /> */}
