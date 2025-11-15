@@ -21,7 +21,6 @@ const ImageReveal = memo(function ImageReveal({
     const [loaded, setLoaded] = useState(false);
     const imgRef = useRef(null);
 
-    // ✅ Preload + decode image for ultra-smooth reveal
     useEffect(() => {
         let cancelled = false;
         const img = new Image();
@@ -40,7 +39,6 @@ const ImageReveal = memo(function ImageReveal({
         };
     }, [src]);
 
-    // ✅ Start animation once image is in view & loaded
     useEffect(() => {
         if (inView && loaded) {
             controls.set("hidden");
@@ -82,7 +80,6 @@ const ImageReveal = memo(function ImageReveal({
                 transform: "translateZ(0)",
             }}
         >
-            {/* Image layer */}
             <motion.div
                 variants={imgVars}
                 animate={controls}
@@ -91,7 +88,6 @@ const ImageReveal = memo(function ImageReveal({
                     width: "100%",
                     height: "100%",
                     willChange: "transform, opacity",
-                    transform: "translateZ(0)",
                 }}
             >
                 <motion.img
@@ -102,19 +98,15 @@ const ImageReveal = memo(function ImageReveal({
                     style={{
                         opacity: loaded ? 1 : 0,
                         transition: "opacity 0.5s ease-out",
-                        transform: "translateZ(0)",
-                        backfaceVisibility: "hidden",
                     }}
                 />
             </motion.div>
 
-            {/* Overlay reveal layer */}
             <motion.div
                 className="absolute inset-0 z-10"
                 style={{
                     backgroundColor: "#101c27",
                     willChange: "transform",
-                    transform: "translateZ(0)",
                     pointerEvents: "none",
                 }}
                 variants={overlayVars}
@@ -125,10 +117,10 @@ const ImageReveal = memo(function ImageReveal({
 });
 
 /* --------------------------------------------------------------
-   ABOUT SECTION - FULLY RESPONSIVE
+   WHY CHOOSE US SECTION (CONTENT UPDATED ONLY)
    -------------------------------------------------------------- */
 export default function AboutSection() {
-    // Preload all images early
+
     useEffect(() => {
         ["/Images/about_1.webp", "/Images/about_2.webp", "/Images/about_3.webp"].forEach(
             (src) => {
@@ -141,33 +133,31 @@ export default function AboutSection() {
     return (
         <section className="text-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
-                {/* Mobile/Tablet Layout - Stack vertically */}
+
+                {/* Mobile/Tablet Layout */}
                 <div className="lg:hidden space-y-8 sm:space-y-10">
-                    {/* Text Content - First on mobile */}
+
+                    {/* TEXT CONTENT UPDATED */}
                     <div className="px-2 sm:px-4">
                         <p className="text-xs sm:text-sm text-gray-800 mb-2 sm:mb-3 tracking-wide uppercase">
-                            About My EasyWay IT Solutions
+                            Why Choose EasyWay IT Solutions
                         </p>
 
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug mb-4 sm:mb-6">
                             <ScrollTextReveal 
-                                text=" We Create Digital Experiences that Transform Ideas into Impact." 
+                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions." 
                                 className="font-bold text-2xl sm:text-3xl md:text-4xl" 
                             />
                         </h2>
 
                         <p className="text-sm sm:text-base text-black mb-6 sm:mb-8 leading-relaxed">
-                            At <span className="text-black font-semibold">EasyWay IT Solutions</span>, we blend
-                            innovation with design to build powerful digital experiences that drive real growth.
-                            From <span className="text-black font-medium">Web Development</span> and
-                            <span className="text-black font-medium"> UI/UX Design</span> to
-                            <span className="text-black font-medium"> Graphic Design</span> and
-                            <span className="text-black font-medium"> Video Editing</span>,
-                            we craft solutions that help brands connect, engage, and evolve.
+                            Choosing <span className="font-semibold">EasyWay IT Solutions</span> means partnering with a team that prioritizes innovation, clarity, and real business growth.
+                            We deliver <span className="font-medium">high-performance websites</span>,
+                            intuitive <span className="font-medium">UI/UX designs</span>,
+                            impactful <span className="font-medium">branding & graphics</span>,
+                            and engaging <span className="font-medium">video content</span> to elevate your brand.
                             <br /><br />
-                            Our team is passionate about turning your vision into a seamless digital reality —
-                            combining technology, creativity, and strategy to make your business stand out in the
-                            modern world.
+                            We focus on understanding your goals and crafting solutions that stand out — creative, strategic, and built for long-term success.
                         </p>
 
                         <button className="group relative inline-block px-6 sm:px-8 py-2.5 sm:py-3 rounded-[10px] text-sm sm:text-base font-medium border-2 border-white text-black hover:text-black overflow-hidden transition-colors duration-500 z-10">
@@ -178,9 +168,9 @@ export default function AboutSection() {
                         </button>
                     </div>
 
-                    {/* Images Section - Second on mobile (below text) */}
+                    {/* IMAGES (UNCHANGED) */}
                     <div className="relative flex justify-center items-center min-h-[380px] sm:min-h-[450px] md:min-h-[500px] mx-auto max-w-2xl">
-                        {/* Circular Text Badge - Below Navbar (z-30) */}
+
                         <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full scale-[0.65] sm:scale-75 md:scale-90">
                             <CircularText
                                 text="YEARS OF EXPERIENCE "
@@ -191,7 +181,6 @@ export default function AboutSection() {
                             <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-2xl sm:text-3xl">1 +</p>
                         </div>
 
-                        {/* Big image */}
                         <div className="absolute left-[5%] sm:left-[10%] z-20 w-[42%] sm:w-[45%] h-[300px] sm:h-[380px] md:h-[450px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-[#101a24] overflow-hidden">
                             <ImageReveal
                                 className="h-full"
@@ -202,7 +191,6 @@ export default function AboutSection() {
                             />
                         </div>
 
-                        {/* Medium image */}
                         <div className="absolute right-[15%] sm:right-[18%] z-10 w-[40%] sm:w-[42%] h-[250px] sm:h-[320px] md:h-[380px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
@@ -213,7 +201,6 @@ export default function AboutSection() {
                             />
                         </div>
 
-                        {/* Small image - visible on tablet+ */}
                         <div className="absolute right-0 sm:right-[2%] hidden sm:block w-[32%] md:w-[35%] h-[220px] md:h-[280px] rounded-[50px] md:rounded-[70px] overflow-hidden border-[5px] sm:border-[6px] border-white">
                             <ImageReveal
                                 className="h-full"
@@ -226,33 +213,32 @@ export default function AboutSection() {
                     </div>
                 </div>
 
-                {/* Desktop Layout - Side by side */}
+                {/* Desktop Layout */}
                 <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
-                    {/* LEFT TEXT CONTENT */}
+
+                    {/* UPDATED DESKTOP TEXT */}
                     <div>
                         <p className="text-sm text-gray-800 mb-3 tracking-wide uppercase">
-                            About My EasyWay IT Solutions
+                            Why Choose EasyWay IT Solutions
                         </p>
 
                         <h2 className="text-4xl lg:text-5xl font-bold leading-snug mb-6">
                             <ScrollTextReveal 
-                                text=" We Create Digital Experiences that Transform Ideas into Impact." 
+                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions." 
                                 className="font-bold text-4xl lg:text-5xl" 
                             />
                         </h2>
 
                         <p className="text-base text-black mb-8 max-w-xl leading-relaxed">
-                            At <span className="text-black font-semibold">EasyWay IT Solutions</span>, we blend
-                            innovation with design to build powerful digital experiences that drive real growth.
-                            From <span className="text-black font-medium">Web Development</span> and
-                            <span className="text-black font-medium"> UI/UX Design</span> to
-                            <span className="text-black font-medium"> Graphic Design</span> and
-                            <span className="text-black font-medium"> Video Editing</span>,
-                            we craft solutions that help brands connect, engage, and evolve.
+                            At <span className="font-semibold">EasyWay IT Solutions</span>, we don’t just offer services — 
+                            we deliver digital solutions that elevate your business to the next level.
+                            With expertise in <span className="font-medium">Web Development</span>,
+                            <span className="font-medium"> UI/UX Design</span>,
+                            <span className="font-medium"> Branding & Graphics</span>, and
+                            <span className="font-medium"> Video Editing</span>,  
+                            we combine creativity with strategy to produce meaningful results.
                             <br /><br />
-                            Our team is passionate about turning your vision into a seamless digital reality —
-                            combining technology, creativity, and strategy to make your business stand out in the
-                            modern world.
+                            Our mission: create impactful digital experiences built for growth, clarity, and long-term brand value.
                         </p>
 
                         <button className="group relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
@@ -263,9 +249,9 @@ export default function AboutSection() {
                         </button>
                     </div>
 
-                    {/* RIGHT IMAGES STACK - Desktop only */}
+                    {/* RIGHT IMAGES STACK (UNCHANGED) */}
                     <div className="relative flex justify-center items-center min-h-[550px]">
-                        {/* Circular Text Badge - Below Navbar (z-30) */}
+
                         <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full">
                             <CircularText
                                 text="YEARS OF EXPERIENCE "
@@ -276,7 +262,6 @@ export default function AboutSection() {
                             <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">1 +</p>
                         </div>
 
-                        {/* Big image */}
                         <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
@@ -287,7 +272,6 @@ export default function AboutSection() {
                             />
                         </div>
 
-                        {/* Medium image */}
                         <div className="absolute right-[20%] z-10 w-[40%] h-[450px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
@@ -298,7 +282,6 @@ export default function AboutSection() {
                             />
                         </div>
 
-                        {/* Small image */}
                         <div className="absolute right-[-10px] w-48 h-[350px] rounded-[80px] overflow-hidden">
                             <ImageReveal
                                 className="h-full"

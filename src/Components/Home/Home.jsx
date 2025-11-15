@@ -1,12 +1,9 @@
 import React from 'react'
 import Header from '../../Common Components/Header'
-import Slider from './Slider'
-import GraphicUIUXHero from './GraphicUIUXHero'
-import VideoEditingHero from './VideoEditingHero'
 import AboutSection from './AboutSection'
-import Testing from '../../Common Components/Testing'
 import About2 from './About2'
 import Slider2 from './Slider2'
+import Services from './Services'
 
 export default function Home() {
     return (
@@ -16,9 +13,8 @@ export default function Home() {
             {/* <Slider /> */}
             <Slider2 />
             <About2 />
+            <Services />
             <AboutSection />
-            {/* <GraphicUIUXHero /> */}
-            {/* <VideoEditingHero /> */}
         </div>
     )
 }

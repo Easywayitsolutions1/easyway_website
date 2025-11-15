@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
@@ -29,13 +29,6 @@ export default function AdvancedSlider() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  // Spotlight refs
-  const titleRef = useRef(null);
-  const spotlightRef = useRef(null);
-  const targetRef = useRef({ x: 0, y: 0 });
-  const smoothRef = useRef({ x: 0, y: 0 });
-  const activeRef = useRef(false);
-
   const nextSlide = () => {
     setDirection(1);
     setIndex((prev) => (prev + 1) % slides.length);
@@ -46,57 +39,21 @@ export default function AdvancedSlider() {
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
+  // Auto-play
   useEffect(() => {
-    const timer = setInterval(() => nextSlide(), 7000);
-    return () => clearInterval(timer);
+    const id = setInterval(nextSlide, 7000);
+    return () => clearInterval(id);
   }, []);
 
-  // Ultra-smooth spotlight animation (pure DOM-based)
+  // Pre-load images
   useEffect(() => {
-    let anim;
-    const follow = () => {
-      const dx = targetRef.current.x - smoothRef.current.x;
-      const dy = targetRef.current.y - smoothRef.current.y;
-      smoothRef.current.x += dx * 0.12;
-      smoothRef.current.y += dy * 0.12;
-
-      if (activeRef.current && spotlightRef.current) {
-        const el = spotlightRef.current;
-        el.style.left = `${smoothRef.current.x}px`;
-        el.style.top = `${smoothRef.current.y}px`;
-      }
-
-      anim = requestAnimationFrame(follow);
-    };
-    anim = requestAnimationFrame(follow);
-    return () => cancelAnimationFrame(anim);
+    slides.forEach((s) => {
+      const img = new Image();
+      img.src = s.image;
+    });
   }, []);
 
-  const handleMouseMove = (e) => {
-    if (!titleRef.current) return;
-    const rect = titleRef.current.getBoundingClientRect();
-    targetRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    };
-    activeRef.current = true;
-    if (spotlightRef.current) spotlightRef.current.style.opacity = 1;
-  };
-
-  const handleMouseLeave = () => {
-    activeRef.current = false;
-    if (spotlightRef.current) spotlightRef.current.style.opacity = 0;
-  };
-
-  // Reset spotlight on slide change
-  useEffect(() => {
-    activeRef.current = false;
-    if (spotlightRef.current) {
-      spotlightRef.current.style.opacity = 0;
-    }
-  }, [index]);
-
-  // Motion Variants
+  // ---------- MOTION VARIANTS ----------
   const slideVariants = {
     initial: (dir) => ({
       y: dir > 0 ? "-120%" : "120%",
@@ -127,17 +84,16 @@ export default function AdvancedSlider() {
 
   const subtitleVariants = {
     initial: { opacity: 0, y: 30 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, delay: 0.4 },
-    },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4 } },
     exit: { opacity: 0, y: -30, transition: { duration: 0.5 } },
   };
 
-  const titleVariantsContainer = {
+  const titleContainerVariants = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.4 } },
+    animate: {
+      opacity: 1,
+      transition: { staggerChildren: 0.06, delayChildren: 0.4 },
+    },
     exit: { opacity: 0, transition: { staggerChildren: 0.04, staggerDirection: -1 } },
   };
 
@@ -169,6 +125,7 @@ export default function AdvancedSlider() {
           exit="exit"
           className="absolute inset-0"
         >
+          {/* Background image */}
           <motion.div
             variants={imageVariants}
             initial="initial"
@@ -182,62 +139,47 @@ export default function AdvancedSlider() {
             />
           </motion.div>
 
+          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10" />
 
           <motion.div
             className="absolute inset-0 z-10"
             style={{
-              background: "radial-gradient(circle at center, transparent 35%, black 100%)",
+              background:
+                "radial-gradient(circle at center, transparent 35%, black 100%)",
             }}
             animate={{ opacity: [0.4, 0.6, 0.4] }}
             transition={{ duration: 8, repeat: Infinity }}
           />
 
-          {/* Text Content */}
+          {/* Text content */}
           <div className="absolute inset-0 flex flex-col justify-center px-8 md:pl-24 z-20 max-w-5xl">
+            {/* Subtitle */}
             <motion.span
               key={`subtitle-${index}`}
               variants={subtitleVariants}
               initial="initial"
               animate="animate"
               exit="exit"
-              className="inline-block text-white/90 uppercase tracking-[0.28em] text-xs md:text-base px-4 py-2 border border-white/30 rounded-full backdrop-blur-md bg-white/5"
+              className="inline-block w-fit text-white/90 uppercase tracking-[0.28em] text-xs md:text-base px-4 py-2 border border-white/30 rounded-full backdrop-blur-md bg-white/5"
             >
               {slides[index].subtitle}
             </motion.span>
 
-            {/* Ultra-smooth Spotlight Title */}
+            {/* Title */}
             <motion.h1
-              ref={titleRef}
               key={`title-${index}`}
-              className="relative text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none my-6 md:my-8 flex flex-wrap cursor-pointer select-none"
-              style={{ textShadow: "0 15px 50px rgba(0,0,0,0.75)" }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              variants={titleVariantsContainer}
+              className="relative text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none my-6 md:my-8 flex flex-wrap select-none"
+              style={{
+                textShadow: "0 15px 50px rgba(0,0,0,0.75)",
+                transform: "translateZ(0)",
+                willChange: "transform",
+              }}
+              variants={titleContainerVariants}
               initial="initial"
               animate="animate"
               exit="exit"
             >
-              {/* smoother DOM element spotlight */}
-              <span
-                ref={spotlightRef}
-                className="absolute pointer-events-none"
-                style={{
-                  left: 0,
-                  top: 0,
-                  width: "180px",
-                  height: "180px",
-                  borderRadius: "50%",
-                  background: "white",
-                  mixBlendMode: "difference",
-                  opacity: 0,
-                  transform: "translate(-50%, -50%)",
-                  transition: "opacity 0.3s ease",
-                  zIndex: 10,
-                }}
-              />
-
               {slides[index].title.split("").map((char, i) => (
                 <motion.span key={`${index}-${i}`} variants={titleWaveVariants}>
                   {char === " " ? "\u00A0" : char}
@@ -245,6 +187,7 @@ export default function AdvancedSlider() {
               ))}
             </motion.h1>
 
+            {/* Description */}
             <motion.p
               key={`desc-${index}`}
               variants={descriptionVariants}
@@ -256,6 +199,7 @@ export default function AdvancedSlider() {
               {slides[index].description}
             </motion.p>
 
+            {/* Divider line */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
