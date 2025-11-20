@@ -2,25 +2,34 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './Components/Home/Home'
 import { useEffect } from 'react'
-import LandingPage from './LandingPage'
-import CustomCursor from './Common Components/CustomCursor'
 import BackgroundLayer from './Common Components/BackgroundLayer'
 import AboutUs from './Components/About Us/AboutUs'
+import ClickSpark from './Common Components/ClickSpark'
 
 function App() {
 
 
   return (
     <>
-      {/* <CustomCursor /> */}
-      {/* <BackgroundLayer /> */}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
-          {/* <Route path="/" element={<LandingPage />} /> */}
-        </Routes>
-      </BrowserRouter>
+      <ClickSpark
+        sparkColor='#120f0f'
+        sparkSize={10}
+        sparkRadius={15}
+        sparkCount={8}
+        duration={400}
+      >
+        {/* Your content here */}
+
+        {/* <CustomCursor /> */}
+        <BackgroundLayer />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
+            {/* <Route path="/" element={<LandingPage />} /> */}
+          </Routes>
+        </BrowserRouter>
+      </ClickSpark>
     </>
   )
 }
