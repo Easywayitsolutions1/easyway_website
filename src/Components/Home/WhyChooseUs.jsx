@@ -144,9 +144,9 @@ export default function WhyChooseUs() {
                         </p>
 
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
-                            <ScrollTextReveal 
-                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions." 
-                                className="font-bold text-2xl sm:text-3xl md:text-4xl" 
+                            <ScrollTextReveal
+                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions."
+                                className="font-bold text-2xl sm:text-3xl md:text-4xl"
                             />
                         </h2>
 
@@ -223,19 +223,19 @@ export default function WhyChooseUs() {
                         </p>
 
                         <h2 className="text-4xl lg:text-5xl font-bold leading-snug mb-6">
-                            <ScrollTextReveal 
-                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions." 
-                                className="font-bold text-4xl lg:text-5xl" 
+                            <ScrollTextReveal
+                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions."
+                                className="font-bold text-4xl lg:text-5xl"
                             />
                         </h2>
 
                         <p className="text-base text-black mb-8 max-w-xl leading-relaxed">
-                            At <span className="font-semibold">EasyWay IT Solutions</span>, we don’t just offer services — 
+                            At <span className="font-semibold">EasyWay IT Solutions</span>, we don’t just offer services —
                             we deliver digital solutions that elevate your business to the next level.
                             With expertise in <span className="font-medium">Web Development</span>,
                             <span className="font-medium"> UI/UX Design</span>,
                             <span className="font-medium"> Branding & Graphics</span>, and
-                            <span className="font-medium"> Video Editing</span>,  
+                            <span className="font-medium"> Video Editing</span>,
                             we combine creativity with strategy to produce meaningful results.
                             <br /><br />
                             Our mission: create impactful digital experiences built for growth, clarity, and long-term brand value.
@@ -265,7 +265,7 @@ export default function WhyChooseUs() {
                         <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_1.webp"
+                                src="/Images/about_1.jpg"
                                 alt="Team collaboration"
                                 duration={2.2}
                                 delay={0}
@@ -275,7 +275,7 @@ export default function WhyChooseUs() {
                         <div className="absolute right-[20%] z-10 w-[40%] h-[450px] rounded-[150px] border-[10px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_2.webp"
+                                src="/Images/about_2.jpg"
                                 alt="Office discussion"
                                 duration={2.2}
                                 delay={0}
@@ -285,7 +285,7 @@ export default function WhyChooseUs() {
                         <div className="absolute right-[-10px] w-48 h-[350px] rounded-[80px] overflow-hidden">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_3.webp"
+                                src="/Images/about_3.jpg"
                                 alt="Team planning"
                                 duration={2.2}
                                 delay={0}
