@@ -53,7 +53,7 @@ export default function About2() {
         >
           {/* Left Image */}
           <motion.img
-            src="/Images/about_1.png"
+            src="/Images/about_1.jpg"
             alt="Left"
             style={{ x: leftX, rotate: leftRotate }}
             className="absolute w-auto h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-2xl shadow-xl z-0"
@@ -61,7 +61,7 @@ export default function About2() {
 
           {/* Center Image */}
           <motion.img
-            src="/Images/about_2.png"
+            src="/Images/about_2.jpg"
             alt="Center"
             style={{ scale: centerScale }}
             className="absolute w-auto h-[300px] sm:h-[420px] md:h-[520px] lg:h-[600px] rounded-2xl shadow-2xl z-10"
@@ -69,7 +69,7 @@ export default function About2() {
 
           {/* Right Image */}
           <motion.img
-            src="/Images/about_3.png"
+            src="/Images/about_3.jpg"
             alt="Right"
             style={{ x: rightX, rotate: rightRotate }}
             className="absolute w-auto h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-2xl shadow-xl z-0"
