@@ -122,7 +122,7 @@ const ImageReveal = memo(function ImageReveal({
 export default function WhyChooseUs() {
 
     useEffect(() => {
-        ["/Images/about_1.webp", "/Images/about_2.webp", "/Images/about_3.webp"].forEach(
+        ["/Images/about_1.png", "/Images/about_2.png", "/Images/about_3.png"].forEach(
             (src) => {
                 const img = new Image();
                 img.src = src;
