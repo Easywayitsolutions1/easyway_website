@@ -184,7 +184,7 @@ export default function WhyChooseUs() {
                         <div className="absolute left-[5%] sm:left-[10%] z-20 w-[42%] sm:w-[45%] h-[300px] sm:h-[380px] md:h-[450px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-[#101a24] overflow-hidden">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_1.webp"
+                                src="/Images/about_1.jpg"
                                 alt="Team collaboration"
                                 duration={2.2}
                                 delay={0}
@@ -194,7 +194,7 @@ export default function WhyChooseUs() {
                         <div className="absolute right-[15%] sm:right-[18%] z-10 w-[40%] sm:w-[42%] h-[250px] sm:h-[320px] md:h-[380px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-white overflow-hidden">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_2.webp"
+                                src="/Images/about_2.jpg"
                                 alt="Office discussion"
                                 duration={2.2}
                                 delay={0}
@@ -204,7 +204,7 @@ export default function WhyChooseUs() {
                         <div className="absolute right-0 sm:right-[2%] hidden sm:block w-[32%] md:w-[35%] h-[220px] md:h-[280px] rounded-[50px] md:rounded-[70px] overflow-hidden border-[5px] sm:border-[6px] border-white">
                             <ImageReveal
                                 className="h-full"
-                                src="/Images/about_3.webp"
+                                src="/Images/about_3.jpg"
                                 alt="Team planning"
                                 duration={2.2}
                                 delay={0}
