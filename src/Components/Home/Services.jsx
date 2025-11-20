@@ -108,10 +108,14 @@ export default function Services() {
             </p>
 
             <div className="relative">
-              <ScrollTextReveal
-                text="OUR SERVICES"
-                className="heading-text text-2xl sm:text-3xl md:text-5xl font-extrabold leading-snug text-[#101c27] max-w-5xl"
-              />
+              
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-4 sm:mb-6">
+                <ScrollTextReveal
+                  text="Our Services"
+                  className="font-black text-2xl sm:text-3xl md:text-7xl text-[#101c27]"
+                />
+              </h2>
 
               <div className="mt-4 w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
                 <motion.div

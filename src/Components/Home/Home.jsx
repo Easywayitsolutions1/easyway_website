@@ -1,8 +1,5 @@
 import React from 'react'
-import Header from '../../Common Components/Header'
-import AboutSection from './WhyChooseUs'
 import AboutUs from './AboutUs'
-import Slider from './Slider'
 import WhyChooseUs from './WhyChooseUs'
 import Services from './Services'
 import Projects from './Projects'
@@ -18,7 +15,6 @@ export default function Home() {
             {/* <Header /> */}
             {/* <Testing /> */}
             <SmoothScrollHero />
-            {/* <Slider /> */}
             <AboutUs />
             <Services />
             <WhyChooseUs />

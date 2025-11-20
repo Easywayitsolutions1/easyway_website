@@ -145,8 +145,8 @@ export default function WhyChooseUs() {
 
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
                             <ScrollTextReveal
-                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions."
-                                className="font-bold text-2xl sm:text-3xl md:text-4xl"
+                                text="Why Choose Us — Smart, Creative & Growth-Driven Solutions."
+                                className="heading-text font-bold text-2xl sm:text-3xl md:text-4xl text-[#101c27]"
                             />
                         </h2>
 
@@ -224,8 +224,8 @@ export default function WhyChooseUs() {
 
                         <h2 className="text-4xl lg:text-5xl font-bold leading-snug mb-6">
                             <ScrollTextReveal
-                                text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions."
-                                className="font-bold text-4xl lg:text-5xl"
+                                text="Why Choose Us — Smart, Creative & Growth-Driven Solutions."
+                                className="heading-text font-bold text-4xl lg:text-5xl text-[#101c27]"
                             />
                         </h2>
 

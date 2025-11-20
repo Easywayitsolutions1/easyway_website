@@ -160,7 +160,7 @@ export default function Header() {
       `}</style>
 
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-[9999] flex justify-center transition-all duration-500">
+      <header className="w-full z-[9999] flex justify-center transition-all duration-500">
         <nav className="flex w-full max-w-[95%] justify-between items-center p-4">
 
           {/* Logo — now controlled by page + scroll */}
@@ -168,7 +168,7 @@ export default function Header() {
             <img
               src={effectiveScrolled ? "/Images/blue_logo.png" : "/Images/blue_logo.png"}
               alt="Logo"
-              className="h-[90px] transition-all duration-500"
+              className="h-[100px] sm:h-[120px] transition-all duration-500"
             />
           </a>
 
