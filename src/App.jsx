@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {/* <CustomCursor /> */}
-      <BackgroundLayer />
+      {/* <BackgroundLayer /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
