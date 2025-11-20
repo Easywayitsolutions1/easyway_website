@@ -6,6 +6,7 @@ import BackgroundLayer from './Common Components/BackgroundLayer'
 import AboutUs from './Components/About Us/AboutUs'
 import ClickSpark from './Common Components/ClickSpark'
 import ComingSoon from './Common Components/CommingSoon'
+import { Services } from './Components/Services/Service'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<Home />} />
             {/* <Route path="/aboutUs" element={<AboutUs />} /> */}
             <Route path="/comingSoon" element={<ComingSoon />} />
+            <Route path="/Service" element={<Services />} />
             {/* <Route path="/" element={<LandingPage />} /> */}
           </Routes>
         </BrowserRouter>
