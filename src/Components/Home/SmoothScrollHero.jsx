@@ -79,24 +79,24 @@ const ParallaxImages = () => {
     return (
         <div className="mx-auto max-w-6xl px-4 pt-[200px]">
             <ParallaxImg
-                src="/Images/about_1.jpg"
+                src="/Images/slide_1.jpg"
                 alt="And example of a space launch"
                 start={200}
                 end={200}
                 className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px]"
             />
             <ParallaxImg
-                src="/Images/about_2.jpg"
+                src="/Images/slide_2.jpg"
                 alt="An example of a space launch"
                 start={0}
                 end={-250}
-                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] mx-auto"
+                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] ms-[28%]"
             />
             <ParallaxImg
-                src="/Images/about_3.jpg"
+                src="/Images/slide_3.jpg"
                 alt="Orbiting satellite"
-                start={-250}
-                end={-500}
+                start={-300}
+                end={-450}
                 className="ml-auto h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px]"
             />
             {/* <ParallaxImg
