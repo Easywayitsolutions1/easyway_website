@@ -1,0 +1,185 @@
+/* Background Grid */
+.bg-grid {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 200px 100%;
+  z-index: 10; /* Grid is at the bottom */
+}
+
+/* Moving Lines */
+.moving-line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(200, 200, 200, 0.2) 20%,
+    rgba(180, 180, 180, 0.6) 50%,
+    rgba(200, 200, 200, 0.2) 80%,
+    transparent 100%
+  );
+  will-change: transform;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.moving-line.vertical {
+  width: 3px; /* thin line */
+  height: 20vh; /* full height */
+  border-radius: 2px;
+  will-change: transform;
+  pointer-events: none;
+  position: absolute;
+  width: 3px;
+  height: 30vh; 
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: move-line 3s linear infinite;
+}
+
+@keyframes move-line {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Line Animations */
+@keyframes line-up {
+  0% {
+    transform: translateY(120vh) scaleY(0.3);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+    transform: translateY(110vh) scaleY(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(50vh) scaleY(1);
+  }
+  85% {
+    opacity: 0.6;
+    transform: translateY(-10vh) scaleY(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20vh) scaleY(0.3);
+  }
+}
+
+@keyframes line-down {
+  0% {
+    transform: translate3d(0, -10px, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(0, 50vh, 0) scale(1.05);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 105vh, 0) scale(1);
+    opacity: 0;
+  }
+}
+
+/* PARTICLE ANIMATIONS - These were missing! */
+@keyframes move-down {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 10px));
+    opacity: 0;
+  }
+}
+
+@keyframes move-up {
+  0% {
+    transform: translateY(calc(100vh + 10px));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 10px));
+    opacity: 0;
+  }
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(calc(100vw + 10px));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+}
+
+/* Particle styles */
+.particle {
+  box-shadow: 0 0 8px rgba(3, 44, 216, 0.3), 0 0 16px rgba(3, 44, 216, 0.1);
+  will-change: transform, opacity;
+  filter: blur(0.3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle,
+  .moving-line,
+  .bg-grid {
+    animation: none !important;
+  }
+}

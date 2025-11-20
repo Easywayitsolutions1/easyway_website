@@ -80,7 +80,7 @@ const CircularText = ({ text, spinDuration = 20, onHover = 'speedUp', className 
 
   return (
     <motion.div
-      className={`m-0 mx-auto rounded-full w-[150px] h-[150px] relative text-black font-semibold text-center cursor-pointer origin-center ${className}`}
+      className={`m-0 mx-auto rounded-full w-[150px] h-[150px] relative font-semibold text-center cursor-pointer origin-center ${className}`}
       style={{ rotate: rotation }}
       initial={{ rotate: 0 }}
       animate={controls}

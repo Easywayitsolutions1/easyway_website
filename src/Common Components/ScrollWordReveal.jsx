@@ -19,7 +19,7 @@ export default function ScrollWordReveal({
   // Track scroll progress relative to this section
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "end 10%"],
+    offset: ["start 90%", "end 50%"],
   });
 
   const words = text.split(" ");

@@ -119,7 +119,7 @@ const ImageReveal = memo(function ImageReveal({
 /* --------------------------------------------------------------
    WHY CHOOSE US SECTION (CONTENT UPDATED ONLY)
    -------------------------------------------------------------- */
-export default function AboutSection() {
+export default function WhyChooseUs() {
 
     useEffect(() => {
         ["/Images/about_1.webp", "/Images/about_2.webp", "/Images/about_3.webp"].forEach(
@@ -131,8 +131,8 @@ export default function AboutSection() {
     }, []);
 
     return (
-        <section className="text-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+        <section className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
+            <div className="w-[95%] mx-auto">
 
                 {/* Mobile/Tablet Layout */}
                 <div className="lg:hidden space-y-8 sm:space-y-10">
@@ -143,7 +143,7 @@ export default function AboutSection() {
                             Why Choose EasyWay IT Solutions
                         </p>
 
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug mb-4 sm:mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
                             <ScrollTextReveal 
                                 text=" Why Choose Us — Smart, Creative & Growth-Driven Solutions." 
                                 className="font-bold text-2xl sm:text-3xl md:text-4xl" 
@@ -176,7 +176,7 @@ export default function AboutSection() {
                                 text="YEARS OF EXPERIENCE "
                                 onHover="speedUp"
                                 spinDuration={20}
-                                className="custom-class"
+                                className="custom-class text-black"
                             />
                             <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-2xl sm:text-3xl">1 +</p>
                         </div>
@@ -257,7 +257,7 @@ export default function AboutSection() {
                                 text="YEARS OF EXPERIENCE "
                                 onHover="speedUp"
                                 spinDuration={20}
-                                className="custom-class"
+                                className="custom-class text-black"
                             />
                             <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">1 +</p>
                         </div>

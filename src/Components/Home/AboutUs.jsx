@@ -38,12 +38,12 @@ export default function About2() {
   return (
     <div
       ref={ref}
-      className="h-screen sm:min-h-[160vh] w-full flex flex-col justify-center items-center py-20 bg-white overflow-hidden"
+      className="h-screen sm:min-h-[180vh] w-full flex flex-col justify-center items-center py-20 bg-white overflow-hidden"
     >
-      <div className="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] max-w-[900px] text-center">
+      <div className="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[70%] text-center">
         {/* Heading Text */}
         <ScrollWordReveal
-          className="heading-text text-3xl sm:text-4xl md:text-5xl leading-snug font-semibold text-black"
+          className="heading-text text-3xl sm:text-4xl md:text-6xl leading-snug font-bold text-[#0b1521]"
         />
 
         {/* Scroll-Aware Image Layout */}

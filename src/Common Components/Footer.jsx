@@ -1,0 +1,113 @@
+import React from "react";
+import { ArrowUpRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import CircularText from "./CircularText";
+
+export default function Footer() {
+    return (
+        <div className="p-3 rounded-[15px] overflow-hidden">
+            <footer className="bg-[#0b1521] rounded-[15px] text-gray-300 py-14 px-6">
+
+
+
+                <div className="rounded-2xl w-[95%] ms-[2.5%] flex flex-row justify-between items-center gap-8 mb-12">
+                    <h2 className="heading-text uppercase text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight" data-aos="fade-right" data-aos-duration="1500"
+                    >
+                        Let's Connect<br />With Us
+                    </h2>
+
+                    <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+
+
+                        <div className="relative rounded-full flex items-center justify-center w-40 h-40" data-aos="fade-left" data-aos-duration="1500">
+
+                            <CircularText
+                                text="Let`s Connect ● Let`s Connect ● "
+                                onHover="speedUp"
+                                spinDuration={20}
+                                className="custom-class uppercase heading-text text-white h-[100px] sm:h-[150px] md:h-[180px] w-[100px] sm:w-[150px] md:w-[180px]"
+                            />
+
+                            {/* Center Text */}
+                            <p className="heading-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        text-white flex items-center justify-center font-bold">
+                                <ArrowUpRight className='h-10 sm:h-20 w-10 sm:w-20' />
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div className="w-[95%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+
+                    {/* LOGO + ABOUT */}
+                    <div>
+                        <img className="h-[70px]" src="/Images/logo.png" alt="" />
+                        {/* <p className="text-gray-400 mt-3 text-sm">
+                            Creative Developer crafting stunning UI, smooth animations and
+                            modern digital experiences.
+                        </p> */}
+
+                        {/* Social Icons */}
+                        <div className="flex mt-5 gap-3">
+                            {[Instagram, Facebook, Linkedin].map((Icon, i) => (
+                                <div
+                                    key={i}
+                                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer transition"
+                                >
+                                    <Icon size={20} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* QUICK LINKS */}
+                    <div>
+                        <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
+                        <ul className="space-y-3 text-sm">
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Home</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">About</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Projects</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Services</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Contact</li>
+                        </ul>
+                    </div>
+
+                    {/* SERVICES */}
+                    <div>
+                        <h3 className="text-white font-semibold text-lg mb-4">Services</h3>
+                        <ul className="space-y-3 text-sm">
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">UI/UX Design</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Web Development</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">React Development</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Front-End Animations</li>
+                            <li className="opacity-50 hover:opacity-100 text-white cursor-pointer transition">Portfolio Websites</li>
+                        </ul>
+                    </div>
+
+                    {/* CONTACT */}
+                    <div>
+                        <h3 className="text-white font-semibold text-lg mb-4">Contact</h3>
+                        <ul className="space-y-3 text-sm">
+                            <li className="flex items-center gap-2">
+                                <Phone size={18} /> +91 70160 69441
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Mail size={18} /> info@easywayitsolutions.com
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <MapPin size={18} />
+                                Rajkot, Gujarat, India
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-white/10 mt-6 pt-6 text-center text-sm text-gray-500">
+                    © {new Date().getFullYear()} EasyWay IT Solutions. All rights reserved.
+                </div>
+            </footer>
+        </div>
+    );
+}

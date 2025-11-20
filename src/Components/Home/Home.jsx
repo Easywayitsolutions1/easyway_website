@@ -1,20 +1,26 @@
 import React from 'react'
 import Header from '../../Common Components/Header'
-import AboutSection from './AboutSection'
-import About2 from './About2'
-import Slider2 from './Slider2'
+import AboutSection from './WhyChooseUs'
+import AboutUs from './AboutUs'
+import Slider from './Slider'
+import WhyChooseUs from './WhyChooseUs'
 import Services from './Services'
+import Projects from './Projects'
+import OurClients from './OurClients'
+import Footer from '../../Common Components/Footer'
 
 export default function Home() {
     return (
         <div className='bg-white'>
             <Header />
             {/* <Testing /> */}
-            {/* <Slider /> */}
-            <Slider2 />
-            <About2 />
+            <Slider />
+            <AboutUs />
             <Services />
-            <AboutSection />
+            <WhyChooseUs />
+            <Projects />
+            <OurClients />
+            <Footer />
         </div>
     )
 }
