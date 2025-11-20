@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Whatsapp() {
-    
+
     const handleButton = () => {
 
         const phoneNumber = "917016069441";
@@ -10,7 +10,7 @@ export default function Whatsapp() {
             ? `https://api.whatsapp.com/send?phone=${phoneNumber}`
             : `https://web.whatsapp.com/send?phone=${phoneNumber}`;
         window.open(whatsappURL, "_blank");
-    
+
     };
 
     return (

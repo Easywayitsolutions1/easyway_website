@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import BackgroundLayer from './Common Components/BackgroundLayer'
 import AboutUs from './Components/About Us/AboutUs'
 import ClickSpark from './Common Components/ClickSpark'
+import ComingSoon from './Common Components/CommingSoon'
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/aboutUs" element={<AboutUs />} />
+            {/* <Route path="/aboutUs" element={<AboutUs />} /> */}
+            <Route path="/comingSoon" element={<ComingSoon />} />
             {/* <Route path="/" element={<LandingPage />} /> */}
           </Routes>
         </BrowserRouter>

@@ -3,6 +3,15 @@ import { ArrowUpRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from
 import CircularText from "./CircularText";
 
 export default function Footer() {
+
+    const handleWhatsapp = () => {
+        const phoneNumber = "917016069441";
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const whatsappURL = isMobile
+            ? `https://api.whatsapp.com/send?phone=${phoneNumber}`
+            : `https://web.whatsapp.com/send?phone=${phoneNumber}`;
+        window.open(whatsappURL, "_blank");
+    }
     return (
         <div className="p-3 rounded-[15px] overflow-hidden">
             <footer className="bg-[#0b1521] rounded-[15px] text-gray-300 py-14 px-6">
@@ -18,7 +27,7 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
 
 
-                        <div className="relative rounded-full flex items-center justify-center w-40 h-40" data-aos="fade-left" data-aos-duration="1500">
+                        <div onClick={handleWhatsapp} className="relative cursor-pointer rounded-full flex items-center justify-center w-40 h-40" data-aos="fade-left" data-aos-duration="1500">
 
                             <CircularText
                                 text="Let`s Connect ● Let`s Connect ● "

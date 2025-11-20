@@ -278,13 +278,16 @@ export default function Header() {
           className={`menu-content flex flex-col justify-center h-full pl-12 md:pl-20 ${isMenuOpen ? 'active' : isClosing ? 'closing' : 'inactive'}`}
         >
           <div className="flex flex-col space-y-6 z-10">
-            {['Home', 'About Us', 'Services', 'Contact Us'].map((name, i) => (
+            {[{ name: "Home", link: "/" },
+            { name: "About Us", link: "/comingSoon" },
+            { name: "Services", link: "/comingSoon" },
+            { name: "Contact Us", link: "/comingSoon" },].map((name, i) => (
               <a
                 key={i}
-                href="/"
+                href={name.link}
                 onMouseEnter={() => {
                   setHoveredIndex(i);
-                  setHoveredSection(name);
+                  setHoveredSection(name.name);
                 }}
                 onMouseLeave={() => {
                   setHoveredIndex(null);
@@ -296,7 +299,7 @@ export default function Header() {
                   color: "transparent",
                 }}
               >
-                {name.split("").map((letter, index) => (
+                {name.name.split("").map((letter, index) => (
                   <span key={index} className="relative inline-block overflow-hidden">
                     <span
                       className={`block transition-transform duration-[600ms] ${hoveredIndex === i ? "-translate-y-full" : "translate-y-0"}`}
