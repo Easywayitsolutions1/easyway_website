@@ -160,13 +160,13 @@ export default function Header() {
       `}</style>
 
       {/* HEADER */}
-      <header className="fixed top-0 w-full z-30 flex justify-center transition-all duration-500">
+      <header className="fixed top-0 left-0 w-full z-[9999] flex justify-center transition-all duration-500">
         <nav className="flex w-full max-w-[95%] justify-between items-center p-4">
 
           {/* Logo — now controlled by page + scroll */}
           <a href="/">
             <img
-              src={effectiveScrolled ? "/Images/blue_logo.png" : "/Images/logo.png"}
+              src={effectiveScrolled ? "/Images/blue_logo.png" : "/Images/blue_logo.png"}
               alt="Logo"
               className="h-[90px] transition-all duration-500"
             />
@@ -181,21 +181,21 @@ export default function Header() {
             <span
               className="hamburger-line block w-6 h-0.5 my-1"
               style={{
-                backgroundColor: effectiveScrolled ? "#101c27" : "white",
+                backgroundColor: effectiveScrolled ? "#101c27" : "#101c27",
                 transform: (isMenuOpen || isClosing) ? 'rotate(45deg) translateY(10px)' : 'none',
               }}
             />
             <span
               className="hamburger-line block w-6 h-0.5 my-1"
               style={{
-                backgroundColor: effectiveScrolled ? "#101c27" : "white",
+                backgroundColor: effectiveScrolled ? "#101c27" : "#101c27",
                 opacity: (isMenuOpen || isClosing) ? 0 : 1,
               }}
             />
             <span
               className="hamburger-line block w-6 h-0.5 my-1"
               style={{
-                backgroundColor: effectiveScrolled ? "#101c27" : "white",
+                backgroundColor: effectiveScrolled ? "#101c27" : "#101c27",
                 transform: (isMenuOpen || isClosing) ? 'rotate(-45deg) translateY(-10px)' : 'none',
               }}
             />

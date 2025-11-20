@@ -13,7 +13,7 @@ import { SmoothScrollHero } from './SmoothScrollHero'
 export default function Home() {
     return (
         <div className='bg-white'>
-            <Header />
+            {/* <Header /> */}
             {/* <Testing /> */}
             <SmoothScrollHero />
             {/* <Slider /> */}
