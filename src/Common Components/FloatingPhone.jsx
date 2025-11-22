@@ -14,7 +14,7 @@ const FloatingPhone = () => {
     <div
       style={{
         transformStyle: "preserve-3d",
-        transform: "rotateY(-30deg) rotateX(15deg)",
+        transform: "rotateY(30deg) rotateX(15deg)",
       }}
       className="rounded-[24px] bg-[#1a2938]"
     >

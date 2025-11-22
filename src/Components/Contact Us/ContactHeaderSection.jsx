@@ -24,7 +24,7 @@ export default function ContactHeaderSection() {
     const imageTransform = Math.min(scrollY * 0.3, 50);
 
     return (
-        <div className="min-h-screen relative overflow-hidden">
+        <div className="relative overflow-hidden">
             {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
