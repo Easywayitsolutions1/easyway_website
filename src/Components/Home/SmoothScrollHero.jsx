@@ -54,7 +54,7 @@ const CenterImage = () => {
 
     return (
         <motion.div
-            className="sticky top-0 h-screen w-full flex items-center justify-center"
+            className="sticky top-0 h-screen w-full flex items-center justify-center z-10"
             style={{ opacity }}
         >
             {/* <motion.h1
@@ -77,27 +77,27 @@ const CenterImage = () => {
 
 const ParallaxImages = () => {
     return (
-        <div className="mx-auto max-w-6xl px-4 pt-[200px]">
+        <div className="mx-auto max-w-6xl px-4 pt-[200px] space-y-8 sm:space-y-0 relative z-10">
             <ParallaxImg
                 src="/Images/slide_1.jpg"
                 alt="And example of a space launch"
                 start={200}
                 end={200}
-                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px]"
+                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto"
             />
             <ParallaxImg
                 src="/Images/slide_2.jpg"
                 alt="An example of a space launch"
                 start={0}
                 end={-250}
-                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] ms-[28%]"
+                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto sm:ms-[28%]"
             />
             <ParallaxImg
                 src="/Images/slide_3.jpg"
                 alt="Orbiting satellite"
                 start={-300}
                 end={-450}
-                className="ml-auto h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px]"
+                className="h-[300px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto sm:ml-auto"
             />
             {/* <ParallaxImg
                 src="https://images.unsplash.com/photo-1494022299300-899b96e49893?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -130,7 +130,10 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
             alt={alt}
             className={className}
             ref={ref}
-            style={{ transform, opacity }}
+            style={{ 
+                transform: typeof window !== 'undefined' && window.innerWidth >= 640 ? transform : 'none',
+                opacity 
+            }}
         />
     );
 };

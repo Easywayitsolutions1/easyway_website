@@ -3,10 +3,17 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import Footer from "../../Common Components/Footer";
 import Header from "../../Common Components/Header";
+import SEO from "../../Common Components/SEO";
 
 export const Services = () => {
     return (
         <>
+            <SEO 
+                title="Our Services - Web Development, Software Development, UI/UX Design, Video Editing | EasyWay IT Solutions Rajkot"
+                description="EasyWay IT Solutions offers professional IT services in Rajkot: Web Development, Software Development, UI/UX Design, Video Editing, and Custom IT Solutions. Best IT service provider in Rajkot, Gujarat."
+                keywords="Web development company in Rajkot, Website developer in Rajkot, Best web development services Rajkot, Custom website development in Rajkot, Ecommerce website development Rajkot, Website designer in Rajkot, Web design company in Rajkot Gujarat, Responsive website design Rajkot, Software development company in Rajkot, Custom software development Rajkot, Software developers in Rajkot, Mobile app development company Rajkot, UI/UX design company in Rajkot, UI designer in Rajkot, UX designer in Rajkot, Video editing services in Rajkot, Professional video editor in Rajkot"
+                canonicalUrl="https://easywayitsolutions.com/service"
+            />
             <Header />
             <div className="bg-white">
                 <TextParallaxContent

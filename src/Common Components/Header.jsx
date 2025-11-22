@@ -27,6 +27,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   // Mouse move parallax when menu is open
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -46,19 +59,25 @@ export default function Header() {
 
   const toggleMenu = () => {
     if (isMenuOpen) {
+      // Instant closing animation start
       setIsClosing(true);
-      setTimeout(() => setIsMenuOpen(false), 800);
-      setTimeout(() => setIsClosing(false), 1600);
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setIsClosing(false);
+      }, 600);
     } else {
       setIsMenuOpen(true);
+      setIsClosing(false);
     }
   };
 
   const handleMenuClick = (sectionName) => {
     setActiveSection(sectionName);
     setIsClosing(true);
-    setTimeout(() => setIsMenuOpen(false), 800);
-    setTimeout(() => setIsClosing(false), 1600);
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsClosing(false);
+    }, 600);
   };
 
   const getSectionNumber = () => {
@@ -76,25 +95,39 @@ export default function Header() {
     <div className="relative">
       <style>{`
         .menu-overlay {
-          will-change: transform;
-          backface-visibility: hidden;
-          transform: translateZ(0);
-          transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+          clip-path: circle(0% at calc(100% - 50px) 50px);
+          transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         .menu-overlay.active {
-          transform: translateX(0);
+          clip-path: circle(150% at calc(100% - 50px) 50px);
         }
 
-        .menu-overlay.inactive,
         .menu-overlay.closing {
-          transform: translateX(100%);
+          clip-path: circle(0% at calc(100% - 50px) 50px);
+          transition: clip-path 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        @media (max-width: 640px) {
+          .menu-overlay {
+            clip-path: circle(0% at calc(100% - 40px) 40px);
+          }
+          .menu-overlay.active {
+            clip-path: circle(150% at calc(100% - 40px) 40px);
+          }
+          .menu-overlay.closing {
+            clip-path: circle(0% at calc(100% - 40px) 40px);
+          }
         }
 
         .menu-content {
-          transition: all 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-          transition-delay: 0.4s;
+          transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+          transition-delay: 0.3s;
           will-change: transform, opacity;
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
         }
 
         .menu-content.active {
@@ -104,12 +137,13 @@ export default function Header() {
 
         .menu-content.inactive {
           opacity: 0;
-          transform: scale(0.9) translateY(30px);
+          transform: scale(0.95) translateY(20px);
         }
 
         .menu-content.closing {
           opacity: 0;
-          transform: scale(0.9) translateY(-30px);
+          transform: scale(0.95) translateY(-20px);
+          transition: all 0.3s cubic-bezier(0.85, 0, 0.15, 1);
           transition-delay: 0s;
         }
       `}</style>
@@ -122,7 +156,7 @@ export default function Header() {
             <img
               src="/Images/blue_logo.png"
               alt="Logo"
-              className="h-[100px] sm:h-[120px] transition-all duration-500"
+              className="h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px] transition-all duration-500"
             />
           </a>
 
@@ -173,10 +207,10 @@ export default function Header() {
         {/* Close Button */}
         <button
           onClick={toggleMenu}
-          className="absolute top-8 right-10 z-50 flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
+          className="absolute top-6 right-6 sm:top-8 sm:right-10 z-50 flex flex-col justify-center items-center w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
         >
-          <span className="block w-6 h-0.5 bg-white transform rotate-45 translate-y-0.5" />
-          <span className="block w-6 h-0.5 bg-white transform -rotate-45 -translate-y-0.5" />
+          <span className="block w-5 h-0.5 sm:w-6 sm:h-0.5 bg-white transform rotate-45 translate-y-0.5" />
+          <span className="block w-5 h-0.5 sm:w-6 sm:h-0.5 bg-white transform -rotate-45 -translate-y-0.5" />
         </button>
 
         {/* DOT PARALLAX */}
@@ -198,12 +232,12 @@ export default function Header() {
 
         {/* MENU CONTENT */}
         <div
-          className={`menu-content flex items-center justify-between h-full px-12 md:px-20 ${
+          className={`menu-content flex items-center justify-center md:justify-between h-full px-4 sm:px-8 md:px-12 lg:px-20 ${
             isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
           }`}
         >
-          {/* LEFT NUMBER LIST */}
-          <div className="flex flex-col space-y-4 z-10">
+          {/* LEFT NUMBER LIST - Hidden on mobile */}
+          <div className="hidden md:flex flex-col space-y-4 z-10">
             {["01", "02", "03", "04", "05"].map((num, i) => (
               <div
                 key={i}
@@ -218,8 +252,8 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CENTER LINKS */}
-          <div className="flex flex-col space-y-6 z-10">
+          {/* CENTER LINKS - Responsive sizing */}
+          <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-6 z-10 items-center md:items-start">
             {[
               { name: "Home", link: "/" },
               { name: "About Us", link: "/aboutUs" },
@@ -238,7 +272,8 @@ export default function Header() {
                   setHoveredIndex(null);
                   setHoveredSection(null);
                 }}
-                className="heading-text inline-flex uppercase overflow-hidden font-black text-[60px] tracking-[10px]"
+                onClick={() => handleMenuClick(item.name)}
+                className="heading-text inline-flex uppercase overflow-hidden font-black text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] tracking-[3px] sm:tracking-[5px] md:tracking-[8px] lg:tracking-[10px] text-center"
                 style={{ WebkitTextStroke: "1px white", color: "transparent" }}
               >
                 {item.name.split("").map((letter, index) => (
@@ -269,14 +304,14 @@ export default function Header() {
             ))}
           </div>
 
-          {/* RIGHT EMPTY SPACE */}
-          <div className="w-20" />
+          {/* RIGHT EMPTY SPACE - Hidden on mobile */}
+          <div className="hidden md:block w-20" />
         </div>
       </div>
 
       {/* FLOATING LOGO */}
       <div
-        className="fixed top-8 left-8 z-50 transition-all duration-700"
+        className="fixed top-6 left-6 sm:top-8 sm:left-8 z-50 transition-all duration-700"
         style={{
           opacity: isMenuOpen ? 1 : 0,
           transform: isMenuOpen ? "scale(1)" : "scale(0.8)",
@@ -290,7 +325,7 @@ export default function Header() {
             transition: "transform 0.3s ease-out",
           }}
         >
-          <img src="/Images/blue_logo.png" alt="Logo" className="h-[100px]" />
+          <img src="/Images/blue_logo.png" alt="Logo" className="h-[60px] sm:h-[80px] md:h-[100px]" />
         </div>
       </div>
     </div>

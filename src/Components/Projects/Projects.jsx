@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import SEO from "../../Common Components/SEO";
 
 export default function ProjectShowcase() {
   const containerRef = useRef(null);
@@ -12,13 +13,21 @@ export default function ProjectShowcase() {
   ];
 
   return (
-    <div ref={containerRef} className="min-h-screen w-full px-6 py-20">
-      <div className="flex flex-col gap-32">
-        {projects.map((item, index) => (
-          <ProjectCard key={index} item={item} />
-        ))}
+    <>
+      <SEO 
+        title="Our Projects - Web Development & Software Development Portfolio | EasyWay IT Solutions Rajkot"
+        description="View our portfolio of successful web development, software development, UI/UX design, and video editing projects. EasyWay IT Solutions - Best IT company in Rajkot, Gujarat."
+        keywords="Web development projects Rajkot, Software development portfolio Rajkot, UI/UX design projects, Website development examples, IT solutions portfolio, Best IT company projects Rajkot"
+        canonicalUrl="https://easywayitsolutions.com/projects"
+      />
+      <div ref={containerRef} className="min-h-screen w-full px-6 py-20">
+        <div className="flex flex-col gap-32">
+          {projects.map((item, index) => (
+            <ProjectCard key={index} item={item} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
