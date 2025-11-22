@@ -279,7 +279,7 @@ export default function Header() {
         >
           <div className="flex flex-col space-y-6 z-10">
             {[{ name: "Home", link: "/" },
-            { name: "About Us", link: "/comingSoon" },
+            { name: "About Us", link: "/aboutUs" },
             { name: "Services", link: "/service" },
             { name: "Contact Us", link: "/contactUs" },].map((name, i) => (
               <a
