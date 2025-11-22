@@ -63,10 +63,11 @@ export default function Header() {
 
   const getSectionNumber = () => {
     const map = {
-      Home: "01",
+      "Home": "01",
       "About Us": "02",
-      Services: "03",
-      "Contact Us": "04",
+      "Services": "03",
+      "Projects": "04",
+      "Contact Us": "05",
     };
     return map[hoveredSection || activeSection] || "01";
   };
@@ -203,7 +204,7 @@ export default function Header() {
         >
           {/* LEFT NUMBER LIST */}
           <div className="flex flex-col space-y-4 z-10">
-            {["01", "02", "03", "04"].map((num, i) => (
+            {["01", "02", "03", "04", "05"].map((num, i) => (
               <div
                 key={i}
                 className={`text-2xl font-bold transition-all duration-300 ${

@@ -9,6 +9,7 @@ export default function Projects() {
     const projects = [
         {
             id: "01",
+            link: "https://plazerassociates.com",
             title: "Plazer Associates Website",
             category: "Web Development",
             image: "/Images/project_1.png",
@@ -18,6 +19,7 @@ export default function Projects() {
         },
         {
             id: "02",
+            link: "https://cbimitation.com",
             title: "CB Imitation Jewellery",
             category: "E-Commerce",
             image: "/Images/project_2.png",
@@ -206,100 +208,106 @@ export default function Projects() {
                             style={{ perspective: "1000px" }}
                         >
                             {/* OUTER WRAPPER WITH BORDER + PADDING (tilt applied directly to DOM node) */}
-                            <div
-                                onMouseEnter={(e) => handleMouseEnter(e, project.id)}
-                                onMouseLeave={() => handleMouseLeave(project.id)}
-                                onMouseMove={(e) => handleMouseMove(e, project.id)}
-                                // capture ref for direct DOM updates
-                                ref={(el) => {
-                                    if (el) {
-                                        cardRefs.current[project.id] = el;
-                                        // ensure initial style for smoothness
-                                        el.style.transformStyle = "preserve-3d";
-                                        el.style.transition = "box-shadow 0.3s ease";
-                                    } else {
-                                        delete cardRefs.current[project.id];
-                                    }
-                                }}
-                                className="p-3 border border-black rounded-2xl bg-white/5 backdrop-blur-sm transition-all duration-200 will-change-transform"
-                                style={{
-                                    // no transform set here — animation loop writes it
-                                    transformStyle: "preserve-3d",
-                                }}
-                            >
-                                {/* INNER CARD (unchanged) */}
+                            <a href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block">
                                 <div
-                                    className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl 
-                                        cursor-pointer h-[400px] sm:h-[450px] md:h-[450px]"
+                                    onMouseEnter={(e) => handleMouseEnter(e, project.id)}
+                                    onMouseLeave={() => handleMouseLeave(project.id)}
+                                    onMouseMove={(e) => handleMouseMove(e, project.id)}
+                                    // capture ref for direct DOM updates
+                                    ref={(el) => {
+                                        if (el) {
+                                            cardRefs.current[project.id] = el;
+                                            // ensure initial style for smoothness
+                                            el.style.transformStyle = "preserve-3d";
+                                            el.style.transition = "box-shadow 0.3s ease";
+                                        } else {
+                                            delete cardRefs.current[project.id];
+                                        }
+                                    }}
+                                    className="p-3 border border-black rounded-2xl bg-white/5 backdrop-blur-sm transition-all duration-200 will-change-transform"
                                     style={{
+                                        // no transform set here — animation loop writes it
                                         transformStyle: "preserve-3d",
-                                        transition: "transform 0.1s ease-out, box-shadow 0.3s ease",
                                     }}
                                 >
-                                    {/* Full Screen Background Image */}
-                                    <div className="absolute inset-0 w-full h-full">
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className={`w-full h-full object-cover transition-all duration-700 
-                                                ${hoveredCard === project.id ? "scale-110" : "scale-100"}`}
-                                        />
-
-                                        <div
-                                            className={`absolute inset-0 bg-gradient-to-t transition-all duration-500
-                                                ${hoveredCard === project.id
-                                                    ? "from-black/90 via-black/60 to-black/30"
-                                                    : "from-black/80 via-black/40 to-black/20"}`}
-                                        />
-                                    </div>
-
-                                    {/* Category Badge */}
+                                    {/* INNER CARD (unchanged) */}
                                     <div
-                                        className="absolute top-4 right-4 z-20"
-                                        style={{ transform: "translateZ(50px)" }}
+                                        className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl 
+                                        cursor-pointer h-[400px] sm:h-[450px] md:h-[450px]"
+                                        style={{
+                                            transformStyle: "preserve-3d",
+                                            transition: "transform 0.1s ease-out, box-shadow 0.3s ease",
+                                        }}
                                     >
-                                        <span
-                                            className={`px-3 py-1.5 backdrop-blur-sm text-xs 
+                                        {/* Full Screen Background Image */}
+                                        <div className="absolute inset-0 w-full h-full">
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className={`w-full h-full object-cover transition-all duration-700 
+                                                ${hoveredCard === project.id ? "scale-110" : "scale-100"}`}
+                                            />
+
+                                            <div
+                                                className={`absolute inset-0 bg-gradient-to-t transition-all duration-500
+                                                ${hoveredCard === project.id
+                                                        ? "from-black/90 via-black/60 to-black/30"
+                                                        : "from-black/80 via-black/40 to-black/20"}`}
+                                            />
+                                        </div>
+
+                                        {/* Category Badge */}
+                                        <div
+                                            className="absolute top-4 right-4 z-20"
+                                            style={{ transform: "translateZ(50px)" }}
+                                        >
+                                            <span
+                                                className={`px-3 py-1.5 backdrop-blur-sm text-xs 
                                                 font-semibold rounded-full shadow-lg border transition-all duration-300
                                                 ${hoveredCard === project.id
-                                                    ? "bg-white text-[#101c27] border-white"
-                                                    : "bg-white/20 text-white border-white/30"}`}
-                                        >
-                                            {project.category}
-                                        </span>
-                                    </div>
+                                                        ? "bg-white text-[#101c27] border-white"
+                                                        : "bg-white/20 text-white border-white/30"}`}
+                                            >
+                                                {project.category}
+                                            </span>
+                                        </div>
 
-                                    {/* Content Overlay */}
-                                    <div
-                                        className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 z-30"
-                                        style={{ transform: "translateZ(60px)" }}
-                                    >
-                                        <h3
-                                            className={`text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 
+                                        {/* Content Overlay */}
+                                        <div
+                                            className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 z-30"
+                                            style={{ transform: "translateZ(60px)" }}
+                                        >
+                                            <h3
+                                                className={`text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 
                                                 transition-transform duration-300
                                                 ${hoveredCard === project.id ? "translate-y-[-5px]" : ""}`}
-                                        >
-                                            {project.title}
-                                        </h3>
-                                    </div>
+                                            >
+                                                {project.title}
+                                            </h3>
+                                        </div>
 
-                                    {/* Bottom Accent Line */}
-                                    <div
-                                        className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r 
+                                        {/* Bottom Accent Line */}
+                                        <div
+                                            className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r 
                                             from-white via-white/80 to-white transform transition-transform duration-500 origin-left z-40
                                             ${hoveredCard === project.id ? "scale-x-100" : "scale-x-0"}`}
-                                    />
+                                        />
 
-                                    {/* Edge Glow */}
-                                    <div
-                                        className={`absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none
+                                        {/* Edge Glow */}
+                                        <div
+                                            className={`absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none
                                             ${hoveredCard === project.id ? "opacity-100" : "opacity-0"}`}
-                                        style={{
-                                            boxShadow: "inset 0 0 30px rgba(255,255,255,0.1)",
-                                        }}
-                                    />
+                                            style={{
+                                                boxShadow: "inset 0 0 30px rgba(255,255,255,0.1)",
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+
+                            </a>
 
                             {/* FOLLOW CIRCLE */}
                             {circlePositions[project.id] && (

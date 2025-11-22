@@ -12,6 +12,13 @@ export default function Services() {
     offset: ["start start", "end end"],
   });
 
+  const moveCursorToCenter = () => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    setCursorPos({ x: centerX, y: centerY });
+  };
+
+
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Cursor follower state
@@ -108,7 +115,7 @@ export default function Services() {
             </p>
 
             <div className="relative">
-              
+
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-4 sm:mb-6">
                 <ScrollTextReveal
@@ -140,6 +147,7 @@ export default function Services() {
               onMouseEnter={() => {
                 setCursorVisible(true);
                 setCursorDarkBg(!isDark); // If background dark → cursor becomes white
+                moveCursorToCenter();
               }}
               onMouseLeave={() => setCursorVisible(false)}
             >
