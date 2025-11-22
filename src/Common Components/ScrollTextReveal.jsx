@@ -11,14 +11,12 @@ export default function ScrollLetterFillSequential({
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 65%", "end 15%"]
-
   });
 
   const chars = Array.from(text);
 
-  // each letter gets equal scroll time
-  const segment = 0.7 / chars.length;
-
+  // slower effect
+  const segment = 0.9 / chars.length;
 
   return (
     <div
@@ -45,12 +43,12 @@ export default function ScrollLetterFillSequential({
       {/* Reveal layer */}
       <div className="flex flex-wrap pointer-events-none">
         {chars.map((char, i) => {
-          // each letter has its OWN TIME SLOT
           const start = segment * i;
           const end = segment * (i + 1);
 
+          // keep it simple — no ease (Framer doesn't support it here)
           const fill = useTransform(scrollYProgress, [start, end], [0, 100], {
-            clamp: true,
+            clamp: true
           });
 
           return (
@@ -64,14 +62,12 @@ export default function ScrollLetterFillSequential({
                 WebkitMaskImage: useTransform(
                   fill,
                   (v) =>
-                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1
-                    }%)`
+                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
                 ),
                 maskImage: useTransform(
                   fill,
                   (v) =>
-                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1
-                    }%)`
+                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
                 ),
 
                 WebkitMaskSize: "100% 100%",

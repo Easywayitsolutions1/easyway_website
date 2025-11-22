@@ -8,6 +8,7 @@ import ClickSpark from './Common Components/ClickSpark'
 import ComingSoon from './Common Components/CommingSoon'
 import { Services } from './Components/Services/Service'
 import ContactUs from './Components/Contact Us/ContactUs'
+import Projects from './Components/Projects/Projects'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/comingSoon" element={<ComingSoon />} />
             <Route path="/service" element={<Services />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/contactUs" element={<ContactUs />} />
             {/* <Route path="/" element={<LandingPage />} /> */}
           </Routes>

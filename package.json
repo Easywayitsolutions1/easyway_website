@@ -27,6 +27,7 @@
     "react-intersection-observer": "^10.0.0",
     "react-router-dom": "^7.6.2",
     "react-toastify": "^11.0.5",
+    "simple-parallax-js": "^6.3.3",
     "swiper": "^12.0.3",
     "tailwindcss": "^4.1.10",
     "three": "^0.181.2"

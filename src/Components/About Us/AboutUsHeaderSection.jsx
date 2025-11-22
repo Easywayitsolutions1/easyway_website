@@ -32,12 +32,6 @@ export default function AboutHeaderSection() {
                 }}></div>
             </div>
 
-            {/* Decorative Floating Elements */}
-            <div className="absolute top-20 left-10 w-32 h-32 border-2 border-black/10 rounded-full animate-pulse"></div>
-            <div className="absolute bottom-20 right-10 w-40 h-40 border-2 border-black/5 rounded-full" style={{ animation: 'float 15s ease-in-out infinite' }}></div>
-            <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-black/20 rounded-full" style={{ animation: 'pulse 3s ease-in-out infinite' }}></div>
-            <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-black/10 rounded-full" style={{ animation: 'pulse 4s ease-in-out infinite' }}></div>
-
             {/* Main Content Container */}
             <div className="relative z-20 flex flex-col">
 
