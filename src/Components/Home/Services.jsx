@@ -38,7 +38,7 @@ export default function Services() {
     {
       id: "01",
       title: "Web Design & Development",
-      image: "/Images/service_1.png",
+      image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80",
       services: [
         "Custom Web Development (Static & Dynamic)",
         "E-Commerce Website Development",
@@ -50,7 +50,7 @@ export default function Services() {
     {
       id: "02",
       title: "UI/UX & Graphic Design",
-      image: "/Images/service_2.png",
+      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
       services: [
         "Logo Design",
         "Brochure & Flyer Design",
@@ -62,7 +62,7 @@ export default function Services() {
     {
       id: "03",
       title: "Video Editing",
-      image: "/Images/service_3.png",
+      image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80",
       services: [
         "Business Promotional Reels",
         "Social Media Reels Editing",
@@ -73,7 +73,7 @@ export default function Services() {
     {
       id: "04",
       title: "Social Media Marketing",
-      image: "/Images/service_4.png",
+      image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&q=80",
       services: [
         "Social Media Posts & Reels Creation",
         "Complete Social Media Account Management",
@@ -86,6 +86,7 @@ export default function Services() {
 
   const handleNavigate = ()=>{
     navigate("/service");
+    window.scrollTo(0, 0);
   }
 
   return (

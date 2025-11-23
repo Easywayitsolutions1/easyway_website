@@ -177,12 +177,14 @@ export default function WhyChooseUs() {
 
                         <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full scale-[0.65] sm:scale-75 md:scale-90">
                             <CircularText
-                                text="YEARS OF EXPERIENCE "
+                                text="FAST DELIVERY • QUALITY CODE • "
                                 onHover="speedUp"
                                 spinDuration={20}
                                 className="custom-class text-black"
                             />
-                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-2xl sm:text-3xl">1 +</p>
+                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-2xl sm:text-3xl">
+                                #1
+                            </p>
                         </div>
 
                         <div className="absolute left-[5%] sm:left-[10%] z-20 w-[42%] sm:w-[45%] h-[300px] sm:h-[380px] md:h-[450px] rounded-[60px] sm:rounded-[80px] md:rounded-[100px] border-[5px] sm:border-[6px] md:border-[8px] border-[#101a24] overflow-hidden">
@@ -230,6 +232,7 @@ export default function WhyChooseUs() {
                             <ScrollTextReveal
                                 text="Why Choose Us — Smart, Creative & Growth-Driven Solutions."
                                 className="heading-text font-bold text-4xl lg:text-5xl text-[#101c27]"
+
                             />
                         </h2>
 
@@ -245,7 +248,7 @@ export default function WhyChooseUs() {
                             Our mission: create impactful digital experiences built for growth, clarity, and long-term brand value.
                         </p>
 
-                        <button onClick={()=> navigate("/service")} className="group cursor-pointer relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
+                        <button onClick={() => { navigate("/service"); window.scrollTo(0, 0); }} className="group cursor-pointer relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
                             <span className="relative z-10 flex justify-between items-center gap-3">
                                 Discover Our Work <ArrowRight size={20} />
                             </span>
@@ -258,12 +261,14 @@ export default function WhyChooseUs() {
 
                         <div className="absolute -left-[5%] top-[0px] z-30 bg-white rounded-full">
                             <CircularText
-                                text="YEARS OF EXPERIENCE "
+                                text="FAST DELIVERY • QUALITY CODE • "
                                 onHover="speedUp"
                                 spinDuration={20}
                                 className="custom-class text-black"
                             />
-                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">1 +</p>
+                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-2xl sm:text-3xl">
+                                #1
+                            </p>
                         </div>
 
                         <div className="absolute left-0 z-20 w-[50%] h-[550px] rounded-[150px] border-[10px] border-white overflow-hidden">

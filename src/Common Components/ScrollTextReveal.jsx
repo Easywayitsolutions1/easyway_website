@@ -10,73 +10,88 @@ export default function ScrollLetterFillSequential({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 65%", "end 15%"]
+    offset: ["start 75%", "end 25%"]
   });
 
-  const chars = Array.from(text);
-
-  // slower effect
-  const segment = 0.9 / chars.length;
+  // ✅ Words mein split - per word animation
+  const words = text.split(" ");
+  const segment = 0.6 / words.length;
 
   return (
     <div
       ref={ref}
-      className="relative flex flex-wrap font-bold"
+      className="relative inline-block font-bold" // ✅ flex-wrap hata diya
       style={{ lineHeight: "1.1em" }}
     >
       {/* Base faint layer */}
-      <div className="flex flex-wrap absolute top-0 left-0 pointer-events-none">
-        {chars.map((char, i) => (
-          <span
-            key={`base-${i}`}
-            className={className}
-            style={{
-              color: `rgba(0,0,0,${baseOpacity})`,
-              whiteSpace: char === " " ? "pre" : "normal",
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </span>
+      <div className="inline-block absolute top-0 left-0 pointer-events-none">
+        {words.map((word, i) => (
+          <React.Fragment key={`base-${i}`}>
+            <span
+              className={className}
+              style={{
+                color: `rgba(0,0,0,${baseOpacity})`,
+              }}
+            >
+              {word}
+            </span>
+            {i < words.length - 1 && " "} {/* Space between words */}
+          </React.Fragment>
         ))}
       </div>
 
       {/* Reveal layer */}
-      <div className="flex flex-wrap pointer-events-none">
-        {chars.map((char, i) => {
-          const start = segment * i;
-          const end = segment * (i + 1);
-
-          // keep it simple — no ease (Framer doesn't support it here)
-          const fill = useTransform(scrollYProgress, [start, end], [0, 100], {
-            clamp: true
-          });
+      <div className="inline-block pointer-events-none">
+        {words.map((word, wordIndex) => {
+          const chars = Array.from(word);
+          const wordStart = segment * wordIndex;
+          const wordEnd = segment * (wordIndex + 1);
 
           return (
-            <motion.span
-              key={`mask-${i}`}
-              className={className}
-              style={{
-                color: "#101c27",
-                whiteSpace: char === " " ? "pre" : "normal",
+            <React.Fragment key={`word-${wordIndex}`}>
+              <span className="inline-block whitespace-nowrap"> {/* ✅ Words together */}
+                {chars.map((char, charIndex) => {
+                  const charStart = wordStart + (wordEnd - wordStart) * (charIndex / chars.length);
+                  const charEnd = wordStart + (wordEnd - wordStart) * ((charIndex + 1) / chars.length);
 
-                WebkitMaskImage: useTransform(
-                  fill,
-                  (v) =>
-                    `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
-                ),
-                maskImage: useTransform(
-                  fill,
-                  (v) =>
-                    `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
-                ),
+                  const fill = useTransform(
+                    scrollYProgress,
+                    [charStart, charEnd],
+                    [0, 100],
+                    { clamp: true }
+                  );
 
-                WebkitMaskSize: "100% 100%",
-                maskSize: "100% 100%",
-                willChange: "mask-image",
-              }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
+                  return (
+                    <motion.span
+                      key={`char-${wordIndex}-${charIndex}`}
+                      className={className}
+                      style={{
+                        color: "#101c27",
+                        display: "inline-block",
+
+                        WebkitMaskImage: useTransform(
+                          fill,
+                          (v) =>
+                            `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
+                        ),
+                        maskImage: useTransform(
+                          fill,
+                          (v) =>
+                            `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
+                        ),
+
+                        WebkitMaskSize: "100% 100%",
+                        maskSize: "100% 100%",
+                        willChange: "mask-image",
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
+              </span>
+              {wordIndex < words.length - 1 && " "} {/* Space between words */}
+            </React.Fragment>
           );
         })}
       </div>

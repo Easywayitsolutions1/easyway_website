@@ -131,6 +131,36 @@
 
 
 
+/* Scrollbar (Background) */
+::-webkit-scrollbar {
+  width: 12px; /* Width of vertical scrollbar */
+  height: 12px; /* Height of horizontal scrollbar */
+}
+
+/* Scrollbar Track Background */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background */
+  border-radius: 10px;
+}
+
+/* Scrollbar Handle  */
+::-webkit-scrollbar-thumb {
+  background: #101c27; /* Dark color */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; /* Padding around thumb */
+}
+
+/* Scrollbar Handle on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0a1419; /* Darker on hover */
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin; 
+  scrollbar-color: #101c27 #f1f1f1; /* thumb color, track color */
+}
+
 
 
 

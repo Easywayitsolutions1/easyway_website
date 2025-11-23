@@ -1,14 +1,16 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import Footer from "../../Common Components/Footer";
 import Header from "../../Common Components/Header";
 import SEO from "../../Common Components/SEO";
+import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Services = () => {
     return (
         <>
-            <SEO 
+            <SEO
                 title="Our Services - Web Development, Software Development, UI/UX Design, Video Editing | EasyWay IT Solutions Rajkot"
                 description="EasyWay IT Solutions offers professional IT services in Rajkot: Web Development, Software Development, UI/UX Design, Video Editing, and Custom IT Solutions. Best IT service provider in Rajkot, Gujarat."
                 keywords="Web development company in Rajkot, Website developer in Rajkot, Best web development services Rajkot, Custom website development in Rajkot, Ecommerce website development Rajkot, Website designer in Rajkot, Web design company in Rajkot Gujarat, Responsive website design Rajkot, Software development company in Rajkot, Custom software development Rajkot, Software developers in Rajkot, Mobile app development company Rajkot, UI/UX design company in Rajkot, UI designer in Rajkot, UX designer in Rajkot, Video editing services in Rajkot, Professional video editor in Rajkot"
@@ -17,46 +19,41 @@ export const Services = () => {
             <Header />
             <div className="bg-white">
                 <TextParallaxContent
-                    imgUrl="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671&auto=format&fit=crop"
+                    imgUrl="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=2000&q=80"
                     subheading="Web Development"
                     heading="Build Better Websites"
-                    // heading="Build Powerful & Responsive Websites."
                 >
                     <WebDevContent />
                 </TextParallaxContent>
 
                 <TextParallaxContent
-                    imgUrl="https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?q=80&w=2564&auto=format&fit=crop"
+                    imgUrl="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=2000&q=80"
                     subheading="UI / UX Design"
                     heading="Smarter User Experience"
-                    // heading="Designs That Create Better Experiences."
                 >
                     <UIUXContent />
                 </TextParallaxContent>
 
                 <TextParallaxContent
-                    imgUrl="https://images.unsplash.com/photo-1504610926078-a1611febcad3?q=80&w=2416&auto=format&fit=crop"
+                    imgUrl="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=2000&q=80"
                     subheading="Video Editing"
                     heading="Edit. Enhance. Impress."
-                    // heading="High-Impact Visual Stories That Convert."
                 >
                     <VideoEditingContent />
                 </TextParallaxContent>
 
                 <TextParallaxContent
-                    imgUrl="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2600&auto=format&fit=crop"
+                    imgUrl="https://images.unsplash.com/photo-1579869847514-7c1a19d2d2ad?w=2000&q=80"
                     subheading="Social Media Management"
                     heading="Grow Your Online Presence"
-                    // heading="Grow Your Brand With Strategic Content."
                 >
                     <SocialMediaContent />
                 </TextParallaxContent>
 
                 <TextParallaxContent
-                    imgUrl="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2600&auto=format&fit=crop"
+                    imgUrl="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=2000&q=80"
                     subheading="Custom Development"
                     heading="Solutions That Fit You"
-                    // heading="Tailored Software Solutions for Your Business."
                 >
                     <CustomDevContent />
                 </TextParallaxContent>
@@ -146,8 +143,15 @@ const OverlayCopy = ({ subheading, heading }) => {
     );
 };
 
-const WebDevContent = () => (
-    <>
+const WebDevContent = () => {
+    const navigate = useNavigate(); 
+
+    const handleClick = () => {
+        navigate("/contactUs");
+        setTimeout(() => window.scrollTo(0, 0), 0);
+    };
+
+    return (
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
                 Powerful Websites That Drive Results
@@ -162,16 +166,26 @@ const WebDevContent = () => (
                     Whether you need a landing page, e-commerce store, or full custom
                     platform—our web solutions are scalable, secure, and future-ready.
                 </p>
-                <button className="w-full rounded bg-neutral-900 px-9 py-4 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit">
-                    Learn more <FiArrowUpRight className="inline" />
+                <button onClick={handleClick} className="group relative inline-block w-full md:w-fit px-9 py-4 rounded-xl text-xl font-semibold border-2 border-neutral-900 text-neutral-900 hover:text-white overflow-hidden transition-colors duration-500">
+                    <span className="relative z-[2] flex items-center justify-center gap-3">
+                        Let's Start <FiArrowUpRight className="inline" />
+                    </span>
+                    <span className="absolute z-[1] top-full left-full w-[350px] h-[180px] bg-neutral-900 rounded-full transition-all duration-700 ease-in-out group-hover:top-[-40px] group-hover:left-[-40px]" />
                 </button>
             </div>
         </div>
-    </>
-);
+    );
+};
 
-const UIUXContent = () => (
-    <>
+const UIUXContent = () => {
+    const navigate = useNavigate(); 
+
+    const handleClick = () => {
+        navigate("/contactUs");
+        setTimeout(() => window.scrollTo(0, 0), 0);
+    };
+
+    return (
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
                 Designs That Users Love
@@ -185,16 +199,26 @@ const UIUXContent = () => (
                     Our UI/UX process focuses on usability, brand consistency, and seamless
                     workflows—helping you convert more users effortlessly.
                 </p>
-                <button className="w-full rounded bg-neutral-900 px-9 py-4 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit">
-                    Learn more <FiArrowUpRight className="inline" />
+                <button onClick={handleClick} className="group relative inline-block w-full md:w-fit px-9 py-4 rounded-xl text-xl font-semibold border-2 border-neutral-900 text-neutral-900 hover:text-white overflow-hidden transition-colors duration-500">
+                    <span className="relative z-[2] flex items-center justify-center gap-3">
+                        Let's Start <FiArrowUpRight className="inline" />
+                    </span>
+                    <span className="absolute z-[1] top-full left-full w-[350px] h-[180px] bg-neutral-900 rounded-full transition-all duration-700 ease-in-out group-hover:top-[-40px] group-hover:left-[-40px]" />
                 </button>
             </div>
         </div>
-    </>
-);
+    );
+};
 
-const VideoEditingContent = () => (
-    <>
+const VideoEditingContent = () => {
+    const navigate = useNavigate(); 
+
+    const handleClick = () => {
+        navigate("/contactUs");
+        setTimeout(() => window.scrollTo(0, 0), 0);
+    };
+
+    return (
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
                 Professional Videos That Stand Out
@@ -208,16 +232,26 @@ const VideoEditingContent = () => (
                     With smooth transitions, crisp visuals, and impactful storytelling—your
                     content becomes impossible to ignore.
                 </p>
-                <button className="w-full rounded bg-neutral-900 px-9 py-4 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit">
-                    Learn more <FiArrowUpRight className="inline" />
+                <button onClick={handleClick} className="group relative inline-block w-full md:w-fit px-9 py-4 rounded-xl text-xl font-semibold border-2 border-neutral-900 text-neutral-900 hover:text-white overflow-hidden transition-colors duration-500">
+                    <span className="relative z-[2] flex items-center justify-center gap-3">
+                        Let's Start <FiArrowUpRight className="inline" />
+                    </span>
+                    <span className="absolute z-[1] top-full left-full w-[350px] h-[180px] bg-neutral-900 rounded-full transition-all duration-700 ease-in-out group-hover:top-[-40px] group-hover:left-[-40px]" />
                 </button>
             </div>
         </div>
-    </>
-);
+    );
+};
 
-const SocialMediaContent = () => (
-    <>
+const SocialMediaContent = () => {
+    const navigate = useNavigate(); 
+
+    const handleClick = () => {
+        navigate("/contactUs");
+        setTimeout(() => window.scrollTo(0, 0), 0);
+    };
+
+    return (
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
                 Grow Faster on Social Media
@@ -231,17 +265,26 @@ const SocialMediaContent = () => (
                     From Instagram to LinkedIn, we build strategies that increase reach,
                     boost followers, and convert audiences into customers.
                 </p>
-                <button className="w-full rounded bg-neutral-900 px-9 py-4 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit">
-                    Learn more <FiArrowUpRight className="inline" />
+                <button onClick={handleClick} className="group relative inline-block w-full md:w-fit px-9 py-4 rounded-xl text-xl font-semibold border-2 border-neutral-900 text-neutral-900 hover:text-white overflow-hidden transition-colors duration-500">
+                    <span className="relative z-[2] flex items-center justify-center gap-3">
+                        Let's Start <FiArrowUpRight className="inline" />
+                    </span>
+                    <span className="absolute z-[1] top-full left-full w-[350px] h-[180px] bg-neutral-900 rounded-full transition-all duration-700 ease-in-out group-hover:top-[-40px] group-hover:left-[-40px]" />
                 </button>
             </div>
         </div>
-    </>
-);
+    );
+};
 
+const CustomDevContent = () => {
+    const navigate = useNavigate(); 
 
-const CustomDevContent = () => (
-    <>
+    const handleClick = () => {
+        navigate("/contactUs");
+        setTimeout(() => window.scrollTo(0, 0), 0);
+    };
+
+    return (
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
                 Custom Solutions for Your Business
@@ -252,13 +295,16 @@ const CustomDevContent = () => (
                     business needs—ensuring flexibility, speed, and long-term scalability.
                 </p>
                 <p className="mb-8 text-xl text-neutral-600 md:text-2xl">
-                    Whether it’s automation, dashboards, or full-stack development, we bring
+                    Whether it's automation, dashboards, or full-stack development, we bring
                     your ideas to life with precision and performance.
                 </p>
-                <button className="w-full rounded bg-neutral-900 px-9 py-4 text-xl text-white transition-colors hover:bg-neutral-700 md:w-fit">
-                    Learn more <FiArrowUpRight className="inline" />
+                <button onClick={handleClick} className="group relative inline-block w-full md:w-fit px-9 py-4 rounded-xl text-xl font-semibold border-2 border-neutral-900 text-neutral-900 hover:text-white overflow-hidden transition-colors duration-500">
+                    <span className="relative z-[2] flex items-center justify-center gap-3">
+                        Let's Start <FiArrowUpRight className="inline" />
+                    </span>
+                    <span className="absolute z-[1] top-full left-full w-[350px] h-[180px] bg-neutral-900 rounded-full transition-all duration-700 ease-in-out group-hover:top-[-40px] group-hover:left-[-40px]" />
                 </button>
             </div>
         </div>
-    </>
-);
+    );
+};

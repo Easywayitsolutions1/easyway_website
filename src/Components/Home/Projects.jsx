@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
     const sectionRef = useRef(null);
-    
+
     const projects = [
         {
             id: "01",
@@ -337,7 +337,10 @@ export default function Projects() {
                 {/* Button */}
                 <div className="flex justify-center mt-12 sm:mt-16">
                     <button
-                    onClick={() => navigate("/projects")}
+                        onClick={() => {
+                            navigate("/projects");
+                            window.scrollTo(0, 0);
+                        }}
                         className="group relative cursor-pointer inline-block px-10 py-4 rounded-xl
                         text-lg font-semibold border-2 border-[#101c27] text-[#101c27] 
                         hover:text-white overflow-hidden transition-colors duration-500"
