@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { ArrowRight } from "lucide-react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
 import CircularText from "../../Common Components/CircularText";
+import { useNavigate } from "react-router-dom";
 
 /* --------------------------------------------------------------
    ULTRA-SMOOTH, SLOW IMAGE REVEAL (GPU ONLY, CINEMATIC)
@@ -130,6 +131,9 @@ export default function WhyChooseUs() {
         );
     }, []);
 
+
+    const navigate = useNavigate("");
+
     return (
         <section className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
             <div className="w-[95%] mx-auto">
@@ -241,7 +245,7 @@ export default function WhyChooseUs() {
                             Our mission: create impactful digital experiences built for growth, clarity, and long-term brand value.
                         </p>
 
-                        <button className="group relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
+                        <button onClick={()=> navigate("/service")} className="group cursor-pointer relative inline-block px-8 py-3 rounded-[10px] text-[17px] font-medium border-2 border-black text-black hover:text-white overflow-hidden transition-colors duration-500 z-10">
                             <span className="relative z-10 flex justify-between items-center gap-3">
                                 Discover Our Work <ArrowRight size={20} />
                             </span>

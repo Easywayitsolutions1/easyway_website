@@ -44,7 +44,7 @@ export default function AboutHeaderSection() {
                         {/* Main Title */}
                         <div className="space-y-4 sm:space-y-6">
                             <h1
-                                className="heading-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-black leading-none tracking-tight transition-all duration-300 ease-out"
+                                className="heading-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#101c27] leading-none tracking-tight transition-all duration-300 ease-out"
                                 style={{
                                     transform: `translateX(${scrollTransform}px)`,
                                     opacity: 1
@@ -55,7 +55,7 @@ export default function AboutHeaderSection() {
 
                             {/* Decorative Line */}
                             <div
-                                className="w-24 h-1 bg-black opacity-0"
+                                className="w-24 h-1 bg-[#101c27] opacity-0"
                                 style={{ animation: 'expandWidth 1s ease-out 0.6s forwards' }}
                             ></div>
                         </div>

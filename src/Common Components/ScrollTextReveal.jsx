@@ -56,18 +56,18 @@ export default function ScrollLetterFillSequential({
               key={`mask-${i}`}
               className={className}
               style={{
-                color: "black",
+                color: "#101c27",
                 whiteSpace: char === " " ? "pre" : "normal",
 
                 WebkitMaskImage: useTransform(
                   fill,
                   (v) =>
-                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
+                    `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
                 ),
                 maskImage: useTransform(
                   fill,
                   (v) =>
-                    `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
+                    `linear-gradient(90deg, #101c27 ${v}%, transparent ${v + 1}%)`
                 ),
 
                 WebkitMaskSize: "100% 100%",

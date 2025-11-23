@@ -27,7 +27,6 @@ export default function About2() {
   const leftX = useTransform(scrollYProgress, [0.15, scrollEnd], [0, -mobileOffset]);
   const rightX = useTransform(scrollYProgress, [0.15, scrollEnd], [0, mobileOffset]);
 
-
   // 🔄 Rotation animation synced & capped
   const leftRotate = useTransform(scrollYProgress, [0, 0.15, scrollEnd], [-12, -10, -20]);
   const rightRotate = useTransform(scrollYProgress, [0, 0.15, scrollEnd], [12, 10, 20]);
@@ -38,7 +37,7 @@ export default function About2() {
   return (
     <div
       ref={ref}
-      className="h-screen sm:min-h-[180vh] w-full flex flex-col justify-center items-center py-20 bg-white overflow-hidden"
+      className="h-auto sm:min-h-[180vh] w-full flex flex-col justify-center items-center pt-20 sm:py-20 bg-white overflow-hidden"
     >
       <div className="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[70%] text-center">
         {/* Heading Text */}

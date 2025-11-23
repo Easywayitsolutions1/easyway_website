@@ -2,10 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
+import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
     const sectionRef = useRef(null);
-
+    
     const projects = [
         {
             id: "01",
@@ -46,6 +47,8 @@ export default function Projects() {
         //         "A mobile application for fitness enthusiasts to track workouts, nutrition, and progress with personalized insights.",
         // },
     ];
+
+    const navigate = useNavigate("");
 
     // hovered card id
     const [hoveredCard, setHoveredCard] = useState(null);
@@ -181,7 +184,7 @@ export default function Projects() {
             {/* Section Header */}
             <div className="w-[90%] mx-auto mb-12 sm:mb-16">
                 <div className="text-left">
-                    <p className="text-xs sm:text-sm text-gray-800 mb-2 sm:mb-3 uppercase tracking-[0.25em]">
+                    <p className="text-xs sm:text-sm text-[#101c27] mb-2 sm:mb-3 uppercase tracking-[0.25em]">
                         Our Featured Work
                     </p>
 
@@ -312,7 +315,7 @@ export default function Projects() {
                             {/* FOLLOW CIRCLE */}
                             {circlePositions[project.id] && (
                                 <div
-                                    className="pointer-events-none text-[16px] absolute font-bold z-50 flex flex-col items-center justify-center bg-black text-white text-xs rounded-full"
+                                    className="pointer-events-none text-[16px] absolute font-bold z-50 flex flex-col items-center justify-center bg-[#101c27] text-white text-xs rounded-full"
                                     style={{
                                         width: 120,
                                         height: 120,
@@ -334,7 +337,8 @@ export default function Projects() {
                 {/* Button */}
                 <div className="flex justify-center mt-12 sm:mt-16">
                     <button
-                        className="group relative inline-block px-10 py-4 rounded-xl
+                    onClick={() => navigate("/projects")}
+                        className="group relative cursor-pointer inline-block px-10 py-4 rounded-xl
                         text-lg font-semibold border-2 border-[#101c27] text-[#101c27] 
                         hover:text-white overflow-hidden transition-colors duration-500"
                     >
@@ -344,7 +348,7 @@ export default function Projects() {
 
                         <span
                             className="absolute z-[1] top-full left-full w-[350px] h-[180px] 
-                            bg-black rounded-full transition-all duration-700 ease-in-out
+                            bg-[#101c27] rounded-full transition-all duration-700 ease-in-out
                             group-hover:top-[-40px] group-hover:left-[-40px]"
                         />
                     </button>

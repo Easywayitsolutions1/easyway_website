@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react"; // <-- NEW ARROW ICON
+import { useNavigate } from "react-router-dom";
 
 export default function Services() {
   const cardsRef = useRef(null);
@@ -81,6 +82,12 @@ export default function Services() {
     },
   ];
 
+  const navigate = useNavigate("");
+
+  const handleNavigate = ()=>{
+    navigate("/service");
+  }
+
   return (
     <div className="min-h-screen bg-white text-black mt-[150px]">
       <div className="relative" ref={cardsRef}>
@@ -143,6 +150,7 @@ export default function Services() {
               key={card.id}
               className={`sticky top-32 py-20 flex items-center justify-center ${isDark ? "bg-[#101c27] text-white" : "bg-white text-black"
                 }`}
+                onClick={handleNavigate}
               onMouseMove={handleMouseMove}
               onMouseEnter={() => {
                 setCursorVisible(true);
