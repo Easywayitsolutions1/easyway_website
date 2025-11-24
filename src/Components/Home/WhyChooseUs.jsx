@@ -139,38 +139,8 @@ export default function WhyChooseUs() {
             <div className="w-[95%] mx-auto">
 
                 {/* Mobile/Tablet Layout */}
-                <div className="lg:hidden space-y-8 sm:space-y-10">
+                <div className="lg:hidden space-y-8 sm:space-y-10 ">
 
-                    {/* TEXT CONTENT UPDATED */}
-                    <div className="px-2 sm:px-4">
-                        <p className="text-xs sm:text-sm text-gray-800 mb-2 sm:mb-3 tracking-wide uppercase">
-                            Why Choose EasyWay IT Solutions
-                        </p>
-
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
-                            <ScrollTextReveal
-                                text="Why Choose Us — Smart, Creative & Growth-Driven Solutions."
-                                className="heading-text font-bold text-2xl sm:text-3xl md:text-4xl text-[#101c27]"
-                            />
-                        </h2>
-
-                        <p className="text-sm sm:text-base text-black mb-6 sm:mb-8 leading-relaxed">
-                            Choosing <span className="font-semibold">EasyWay IT Solutions</span> means partnering with a team that prioritizes innovation, clarity, and real business growth.
-                            We deliver <span className="font-medium">high-performance websites</span>,
-                            intuitive <span className="font-medium">UI/UX designs</span>,
-                            impactful <span className="font-medium">branding & graphics</span>,
-                            and engaging <span className="font-medium">video content</span> to elevate your brand.
-                            <br /><br />
-                            We focus on understanding your goals and crafting solutions that stand out — creative, strategic, and built for long-term success.
-                        </p>
-
-                        <button className="group relative inline-block px-6 sm:px-8 py-2.5 sm:py-3 rounded-[10px] text-sm sm:text-base font-medium border-2 border-white text-black hover:text-black overflow-hidden transition-colors duration-500 z-10">
-                            <span className="relative z-10 flex justify-between items-center gap-2 sm:gap-3">
-                                Discover Our Work <ArrowRight size={18} className="sm:w-5 sm:h-5" />
-                            </span>
-                            <span className="absolute top-full left-full w-[300px] h-[150px] bg-white rounded-full transition-all duration-700 ease-in-out group-hover:top-[-30px] group-hover:left-[-30px]" />
-                        </button>
-                    </div>
 
                     {/* IMAGES (UNCHANGED) */}
                     <div className="relative flex justify-center items-center min-h-[380px] sm:min-h-[450px] md:min-h-[500px] mx-auto max-w-2xl">
@@ -217,6 +187,38 @@ export default function WhyChooseUs() {
                             />
                         </div>
                     </div>
+
+                    {/* TEXT CONTENT UPDATED */}
+                    <div className="px-2 sm:px-4">
+                        <p className="text-xs sm:text-sm text-gray-800 mb-2 sm:mb-3 tracking-wide uppercase">
+                            Why Choose EasyWay IT Solutions
+                        </p>
+
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
+                            <ScrollTextReveal
+                                text="Why Choose Us — Smart, Creative & Growth-Driven Solutions."
+                                className="heading-text font-bold text-2xl sm:text-3xl md:text-4xl text-[#101c27]"
+                            />
+                        </h2>
+
+                        <p className="text-sm sm:text-base text-black mb-6 sm:mb-8 leading-relaxed">
+                            Choosing <span className="font-semibold">EasyWay IT Solutions</span> means partnering with a team that prioritizes innovation, clarity, and real business growth.
+                            We deliver <span className="font-medium">high-performance websites</span>,
+                            intuitive <span className="font-medium">UI/UX designs</span>,
+                            impactful <span className="font-medium">branding & graphics</span>,
+                            and engaging <span className="font-medium">video content</span> to elevate your brand.
+                            <br /><br />
+                            We focus on understanding your goals and crafting solutions that stand out — creative, strategic, and built for long-term success.
+                        </p>
+
+                        <button className="group relative inline-block px-6 sm:px-8 py-2.5 sm:py-3 rounded-[10px] text-sm sm:text-base font-medium border-2 border-white text-black hover:text-black overflow-hidden transition-colors duration-500 z-10">
+                            <span className="relative z-10 flex justify-between items-center gap-2 sm:gap-3">
+                                Discover Our Work <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                            </span>
+                            <span className="absolute top-full left-full w-[300px] h-[150px] bg-white rounded-full transition-all duration-700 ease-in-out group-hover:top-[-30px] group-hover:left-[-30px]" />
+                        </button>
+                    </div>
+
                 </div>
 
                 {/* Desktop Layout */}

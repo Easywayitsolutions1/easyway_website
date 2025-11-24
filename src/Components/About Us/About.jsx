@@ -1,8 +1,5 @@
 import React from 'react';
 import ScrollTextReveal from '../../Common Components/ScrollTextReveal'
-// Single-file React component using Tailwind CSS
-// Place this file in your React project and render <AboutSection /> where needed.
-// Image used from the uploaded path below (already referenced):
 const imageUrl = "/mnt/data/c0a302b7-5434-42a9-b406-9d524e9e607a.png";
 
 export default function About() {
@@ -18,10 +15,10 @@ export default function About() {
               <span className="uppercase text-sm font-semibold tracking-widest text-gray-800">About us</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
+            <h2 className="text-2xl w-full sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
               <ScrollTextReveal
                 text="Unlock your brands potential with our creative solutions."
-                className="heading-text font-bold text-2xl sm:text-3xl md:text-6xl text-[#101c27]"
+                className="heading-text font-bold text-2xl sm:text-3xl md:text-6xl lg:text-7xl text-[#101c27]"
               />
             </h2>
             <div className="mt-10">

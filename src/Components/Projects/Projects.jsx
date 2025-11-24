@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Header from "../../Common Components/Header";
+import ProjectPageHeader from "./ProjectPageHeader";
 
 export default function ProjectShowcase() {
   const containerRef = useRef(null);
@@ -29,8 +31,7 @@ export default function ProjectShowcase() {
   ];
 
   return (
-    <div ref={containerRef} className="min-h-screen w-full px-6 py-20">
-
+    <div ref={containerRef} className="min-h-screen w-full">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -41,7 +42,10 @@ export default function ProjectShowcase() {
         }
       `}</style>
 
-      <div className="flex flex-col gap-32">
+      <Header />
+      <ProjectPageHeader />
+
+      <div className="flex flex-col gap-32 px-6 py-16">
         {projects.map((item, index) => (
           <ProjectCard key={index} item={item} />
         ))}
@@ -65,11 +69,13 @@ function ProjectCard({ item }) {
   const opacity = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0.35, 1, 1, 0.35]);
 
   const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
   };
 
   return (
@@ -84,14 +90,8 @@ function ProjectCard({ item }) {
           window.open(item.link, "_blank");
         }
       }}
-      className="
-        w-[95%] mx-auto
-        overflow-hidden rounded-3xl border border-neutral-700
-        shadow-2xl relative cursor-pointer
-      "
+      className="w-[95%] mx-auto overflow-hidden rounded-3xl border border-neutral-700 shadow-2xl relative cursor-pointer"
     >
-
-
       {/* Mouse-follow circle */}
       {isHovered && (
         <motion.div
@@ -102,17 +102,30 @@ function ProjectCard({ item }) {
             width: 150,
             height: 150,
           }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
         >
           <div className="relative w-full h-full">
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-white/70 overflow-hidden flex items-center justify-center bg-black backdrop-blur-md"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
+              className="bg-black absolute inset-0 rounded-full border-2 border-black overflow-hidden"
               transition={{ type: "spring", stiffness: 150, damping: 15 }}
             >
-              <div className="absolute w-[300%] whitespace-nowrap circle-marquee text-white text-[30px] font-black">
-                {`View Project — `.repeat(20)}
+              <div className="absolute inset-0 flex flex-col items-center justify-center top-[-25px]">
+                {/* Static Icon */}
+                <ArrowUpRight
+                  size={28}
+                  strokeWidth={3}
+                  className="z-10 -translate-y-2 text-white"
+                />
+              </div>
+
+              {/* Marquee Text Behind */}
+              <div
+                className="absolute left-0 w-[300%] whitespace-nowrap circle-marquee text-[24px] font-black text-white"
+                style={{ top: "calc(50% + 0px)", transform: "translateY(-50%)" }}
+              >
+                {`View Details · `.repeat(20)}
               </div>
             </motion.div>
           </div>
@@ -125,24 +138,24 @@ function ProjectCard({ item }) {
           alt={item.title}
           className="w-full h-full object-cover"
           style={{
-            scale: useTransform(scrollYProgress, [0, 1], [1, 1])
+            scale: isHovered ? 1.05 : 1,
           }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         />
 
         {/* Overlay marquee */}
         {isHovered && (
           <motion.div
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 0.6,
+              duration: 0.4,
               ease: "easeOut"
             }}
             className="absolute inset-0 flex items-center justify-center bg-black/40 overflow-hidden"
           >
             <div className="relative w-full">
-
               <motion.div
                 className="flex whitespace-nowrap"
                 animate={{ x: [0, -1200] }}
@@ -160,22 +173,15 @@ function ProjectCard({ item }) {
                     <span className="heading-text text-8xl font-black text-white leading-none flex items-center">
                       {item.title}
                     </span>
-
                     <ArrowUpRight className="w-16 h-16 text-white flex-shrink-0" strokeWidth={5} />
                   </div>
-
                 ))}
               </motion.div>
-
             </div>
           </motion.div>
         )}
-
       </div>
 
-      <div className="p-8">
-        <h2 className="text-white text-4xl font-bold">{item.title}</h2>
-      </div>
     </motion.div>
   );
 }

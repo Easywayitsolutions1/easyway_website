@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 /* *{
    background-color: #101c27;
 } */
@@ -12,6 +11,13 @@
 .heading-text {
   font-family: "Montserrat", sans-serif;
 }
+
+/* .main-font {
+  font-family: "Science Gothic", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "CTRS" 0;
+} */
 
 @keyframes fadeIn {
   from {
@@ -130,8 +136,6 @@
   }
 }
 
-
-
 /* Scrollbar (Background) */
 ::-webkit-scrollbar {
   width: 12px; /* Width of vertical scrollbar */
@@ -158,14 +162,6 @@
 
 /* Firefox Scrollbar */
 * {
-  scrollbar-width: thin; 
+  scrollbar-width: thin;
   scrollbar-color: #101c27 #f1f1f1; /* thumb color, track color */
 }
-
-
-
-
-
-
-
-

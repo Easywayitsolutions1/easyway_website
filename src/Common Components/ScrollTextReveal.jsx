@@ -10,103 +10,99 @@ export default function ScrollLetterFillSequential({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "end 10%"], // FIXED — starts early, ends smooth
+    offset: ["start 100%", "end 20%"],
   });
 
-  // Smoother spring but with better response (less delay)
+  // Smooth spring animation
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 22,
+    stiffness: 100,
+    damping: 25,
     mass: 0.5,
   });
 
   const words = text.split(" ");
-  const segment = 1 / words.length;
+  
+  // Calculate total characters for progress distribution
+  let totalChars = 0;
+  words.forEach((word) => {
+    totalChars += word.length;
+  });
+  
+  let charCounter = 0;
+  const charSegment = 1 / totalChars;
 
   return (
     <div
       ref={ref}
-      className="relative inline-block font-bold"
-      style={{
-        lineHeight: "1.1em",
-        whiteSpace: "pre-wrap",
-      }}
+      className="heading-text relative inline-block font-bold"
+      style={{ lineHeight: "1.1em", }}
     >
-      {/* Base faint text */}
-      <div className="absolute top-0 left-0 pointer-events-none inline-block">
-        {words.map((word, i) => (
-          <span key={`base-${i}`} className="inline-block">
-            <span
-              className={className}
-              style={{ color: `rgba(0,0,0,${baseOpacity})` }}
-            >
-              {word}
-            </span>
-            {"\u00A0"}
-          </span>
-        ))}
-      </div>
-
-      {/* Reveal Layer */}
-      <div className="inline-block pointer-events-none">
+      <div className="inline-block">
         {words.map((word, wordIndex) => {
           const chars = [...word];
-
-          const wordStart = segment * wordIndex;
-          const wordEnd = segment * (wordIndex + 1);
-
+          
           return (
-            <span key={`word-${wordIndex}`} className="inline-block">
-              {chars.map((char, charIndex) => {
-                const slowFactor = 0.45; // a bit slow but responsive
+            <React.Fragment key={`word-${wordIndex}`}>
+              {/* Wrap each word to prevent breaking */}
+              <span className="inline-block" style={{ whiteSpace: "nowrap" }}>
+                {chars.map((char, charIndex) => {
+                  const charStart = charSegment * charCounter;
+                  const charEnd = charSegment * (charCounter + 1);
+                  charCounter++;
 
-                const charStart =
-                  wordStart +
-                  (wordEnd - wordStart) *
-                    ((charIndex / chars.length) * slowFactor);
+                  const fill = useTransform(
+                    smoothProgress,
+                    [charStart, charEnd],
+                    [0, 100]
+                  );
 
-                const charEnd =
-                  wordStart +
-                  (wordEnd - wordStart) *
-                    (((charIndex + 1) / chars.length) * slowFactor);
+                  return (
+                    <span
+                      key={`char-${wordIndex}-${charIndex}`}
+                      className="relative inline-block"
+                    >
+                      {/* Base light character */}
+                      <span
+                        className={className}
+                        style={{
+                          color: `rgba(0,0,0,${baseOpacity})`,
+                        }}
+                      >
+                        {char}
+                      </span>
 
-                const fill = useTransform(
-                  smoothProgress,
-                  [charStart, charEnd],
-                  [0, 100]
-                );
-
-                return (
-                  <motion.span
-                    key={`char-${wordIndex}-${charIndex}`}
-                    className={className}
-                    style={{
-                      color: "#101c27",
-                      display: "inline-block",
-
-                      WebkitMaskImage: useTransform(
-                        fill,
-                        (v) =>
-                          `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
-                      ),
-                      maskImage: useTransform(
-                        fill,
-                        (v) =>
-                          `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
-                      ),
-
-                      WebkitMaskSize: "100% 100%",
-                      maskSize: "100% 100%",
-                      willChange: "mask-image",
-                    }}
-                  >
-                    {char}
-                  </motion.span>
-                );
-              })}
-
-              {"\u00A0"}
-            </span>
+                      {/* Dark reveal character */}
+                      <motion.span
+                        className={className}
+                        style={{
+                          color: "#101c27",
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          WebkitMaskImage: useTransform(
+                            fill,
+                            (v) =>
+                              `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
+                          ),
+                          maskImage: useTransform(
+                            fill,
+                            (v) =>
+                              `linear-gradient(90deg, #000 ${v}%, transparent ${v + 1}%)`
+                          ),
+                          WebkitMaskSize: "100% 100%",
+                          maskSize: "100% 100%",
+                          willChange: "mask-image",
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    </span>
+                  );
+                })}
+              </span>
+              {/* Add space after each word except the last */}
+              {wordIndex < words.length - 1 && " "}
+            </React.Fragment>
           );
         })}
       </div>

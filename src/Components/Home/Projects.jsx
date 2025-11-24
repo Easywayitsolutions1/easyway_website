@@ -53,9 +53,8 @@ export default function Projects() {
     // hovered card id
     const [hoveredCard, setHoveredCard] = useState(null);
 
-    // FOLLOW CIRCLE logic (unchanged)
-    const [circlePositions, setCirclePositions] = useState({});
-    const circleTargets = useRef({});
+    // Mouse position for follow circle
+    const [mousePos, setMousePos] = useState({});
 
     // Refs for DOM nodes and tilt internal state
     const cardRefs = useRef({}); // DOM nodes for outer wrappers
@@ -68,8 +67,8 @@ export default function Projects() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // update circle follow target
-        circleTargets.current[cardId] = { x, y };
+        // update mouse position for circle
+        setMousePos(prev => ({ ...prev, [cardId]: { x, y } }));
 
         // compute tilt targets
         const centerX = rect.width / 2;
@@ -91,7 +90,7 @@ export default function Projects() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        circleTargets.current[cardId] = { x, y };
+        setMousePos(prev => ({ ...prev, [cardId]: { x, y } }));
 
         // initialize targets & currents if not present
         const centerX = rect.width / 2;
@@ -108,11 +107,9 @@ export default function Projects() {
         setHoveredCard(null);
         // set target back to neutral
         tiltTargets.current[cardId] = { rx: 0, ry: 0, s: 1 };
-        // also clear circle target so it won't keep moving
-        circleTargets.current[cardId] = circleTargets.current[cardId] || null;
     };
 
-    // animation loop for smooth tilt + circle follow
+    // animation loop for smooth tilt
     useEffect(() => {
         let rafId;
 
@@ -147,21 +144,6 @@ export default function Projects() {
                 el.style.transform = `perspective(1000px) rotateX(${current.rx}deg) rotateY(${current.ry}deg) scale3d(${current.s}, ${current.s}, ${current.s})`;
             });
 
-            // animate follow circle positions
-            setCirclePositions((prev) => {
-                const newPositions = { ...prev };
-                Object.keys(circleTargets.current).forEach((cardId) => {
-                    const target = circleTargets.current[cardId];
-                    if (!target) return;
-                    const current = prev[cardId] || { x: target.x, y: target.y };
-                    newPositions[cardId] = {
-                        x: current.x + (target.x - current.x) * 0.15,
-                        y: current.y + (target.y - current.y) * 0.15,
-                    };
-                });
-                return newPositions;
-            });
-
             rafId = requestAnimationFrame(animate);
         };
 
@@ -175,12 +157,22 @@ export default function Projects() {
             cardRefs.current = {};
             tiltTargets.current = {};
             tiltCurrents.current = {};
-            circleTargets.current = {};
         };
     }, []);
 
     return (
         <div ref={sectionRef} className="relative w-full py-16 sm:py-20 md:py-24 overflow-hidden">
+            {/* Marquee Animation Style */}
+            <style>{`
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .circle-marquee {
+                    animation: marquee 6s linear infinite;
+                }
+            `}</style>
+
             {/* Section Header */}
             <div className="w-[90%] mx-auto mb-12 sm:mb-16">
                 <div className="text-left">
@@ -191,7 +183,7 @@ export default function Projects() {
                     <h2 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-4 sm:mb-6">
                         <ScrollTextReveal
                             text="Our Featured Projects"
-                            className="font-black text-2xl sm:text-3xl md:text-7xl text-[#101c27]"
+                            className="heading-text font-bold text-2xl sm:text-3xl md:text-7xl text-[#101c27]"
                         />
                     </h2>
                 </div>
@@ -312,23 +304,44 @@ export default function Projects() {
 
                             </a>
 
-                            {/* FOLLOW CIRCLE */}
-                            {circlePositions[project.id] && (
-                                <div
-                                    className="pointer-events-none text-[16px] absolute font-bold z-50 flex flex-col items-center justify-center bg-[#101c27] text-white text-xs rounded-full"
+                            {/* FOLLOW CIRCLE - Same as Services component */}
+                            {hoveredCard === project.id && mousePos[project.id] && (
+                                <motion.div
+                                    className="pointer-events-none absolute z-50 flex items-center justify-center"
                                     style={{
-                                        width: 120,
-                                        height: 120,
-                                        opacity: hoveredCard === project.id ? 1 : 0,
-                                        left: 0,
-                                        top: 0,
-                                        transform: `translate3d(${circlePositions[project.id].x - 45}px, ${circlePositions[project.id].y - 45}px, 0)`,
-                                        transition: "opacity 0.25s ease",
+                                        left: mousePos[project.id].x - 75,
+                                        top: mousePos[project.id].y - 75,
+                                        width: 150,
+                                        height: 150,
                                     }}
                                 >
-                                    <ArrowUpRight size={20} />
-                                    View Projects
-                                </div>
+                                    <div className="relative w-full h-full">
+                                        <motion.div
+                                            className="absolute inset-0 rounded-full border-2 overflow-hidden backdrop-blur-md border-white/70 bg-white/90"
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            exit={{ scale: 0 }}
+                                            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                                        >
+                                            <div className="absolute top-[-25px] inset-0 flex flex-col items-center justify-center">
+                                                {/* Static Icon - moved up */}
+                                                <ArrowUpRight
+                                                    size={28}
+                                                    strokeWidth={3}
+                                                    className="z-10 -translate-y-2 text-black"
+                                                />
+                                            </div>
+
+                                            {/* Marquee Text Behind - moved down */}
+                                            <div
+                                                className="absolute left-0 w-[300%] whitespace-nowrap circle-marquee text-[24px] font-black text-black"
+                                                style={{ top: "calc(50% + 0px)", transform: "translateY(-50%)" }}
+                                            >
+                                                {`View Details · `.repeat(20)}
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
                             )}
                         </motion.div>
                     ))}
