@@ -18,8 +18,12 @@ export default function About() {
               <span className="uppercase text-sm font-semibold tracking-widest text-gray-800">About us</span>
             </div>
 
-            <ScrollTextReveal className='heading-text font-bold text-7xl text-[#101c27]' text='Unlock your brands potential with our creative solutions.' />
-
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug mb-4 sm:mb-6">
+              <ScrollTextReveal
+                text="Unlock your brands potential with our creative solutions."
+                className="heading-text font-bold text-2xl sm:text-3xl md:text-6xl text-[#101c27]"
+              />
+            </h2>
             <div className="mt-10">
               <a
                 href="tel:7016069441"
@@ -58,7 +62,7 @@ export default function About() {
         </div>
       </div>
 
-     
+
     </section>
   );
 }
