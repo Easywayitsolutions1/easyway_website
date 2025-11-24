@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
 import CircularText from "../../Common Components/CircularText";
 import { useNavigate } from "react-router-dom";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 /* --------------------------------------------------------------
    ULTRA-SMOOTH, SLOW IMAGE REVEAL (GPU ONLY, CINEMATIC)
@@ -122,6 +123,31 @@ const ImageReveal = memo(function ImageReveal({
    -------------------------------------------------------------- */
 export default function WhyChooseUs() {
 
+    const { setTheme } = useScrollTheme();
+    const navigate = useNavigate("");
+
+    useEffect(() => {
+        // Immediately set theme when component mounts
+        setTheme('light');
+        
+        // Also set on scroll to ensure it stays
+        const handleScroll = () => {
+            const section = document.getElementById('why-choose-us-section');
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+                if (isInView) {
+                    setTheme('light');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial call
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [setTheme]);
+
     useEffect(() => {
         ["/Images/about_1.jpg", "/Images/about_2.jpg", "/Images/about_3.jpg"].forEach(
             (src) => {
@@ -131,11 +157,11 @@ export default function WhyChooseUs() {
         );
     }, []);
 
-
-    const navigate = useNavigate("");
-
     return (
-        <section className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
+        <section 
+            id="why-choose-us-section"
+            className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden bg-white"
+        >
             <div className="w-[95%] mx-auto">
 
                 {/* Mobile/Tablet Layout */}
@@ -239,7 +265,7 @@ export default function WhyChooseUs() {
                         </h2>
 
                         <p className="text-base text-black mb-8 max-w-xl leading-relaxed">
-                            At <span className="font-semibold">EasyWay IT Solutions</span>, we don’t just offer services —
+                            At <span className="font-semibold">EasyWay IT Solutions</span>, we don't just offer services —
                             we deliver digital solutions that elevate your business to the next level.
                             With expertise in <span className="font-medium">Web Development</span>,
                             <span className="font-medium"> UI/UX Design</span>,

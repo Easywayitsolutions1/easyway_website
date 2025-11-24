@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Phone from "../../Common Components/FloatingPhone";
 import { ArrowRight } from "lucide-react";
+import { useScrollTheme } from '../../Common Components/ScrollContext';
 
 export default function ContactForm() {
+
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
 
     const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");

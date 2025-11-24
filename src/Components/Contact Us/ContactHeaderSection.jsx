@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react';
 import Lottie from 'lottie-react';
 import contactAnimation from '../../../public/Images/contact.json'
+import { useScrollTheme } from '../../Common Components/ScrollContext';
 
 export default function ContactHeaderSection() {
     const [scrollY, setScrollY] = useState(0);
@@ -12,12 +13,12 @@ export default function ContactHeaderSection() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToContent = () => {
-        window.scrollTo({
-            top: window.innerHeight,
-            behavior: 'smooth'
-        });
-    };
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
 
     // Calculate scroll-based transform
     const scrollTransform = Math.min(scrollY * 0.1, 200);

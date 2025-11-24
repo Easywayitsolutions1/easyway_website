@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react';
+import { useScrollTheme } from '../../Common Components/ScrollContext';
 
 export default function ServicePageHeader() {
-    const [scrollY, setScrollY] = useState(0);
+    const [scrollY, setScrollY] = useState(0); 
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
 
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
@@ -101,7 +108,7 @@ export default function ServicePageHeader() {
                                     <circle cx="200" cy="200" r="35" fill="#000" opacity="0.2">
                                         <animate attributeName="opacity" values="0.2;0.4;0.2" dur="2s" repeatCount="indefinite" />
                                     </circle>
-                                    
+
                                     {/* Center icon - gear/cog */}
                                     <g className="center-gear" style={{ animation: 'rotateGear 8s linear infinite', transformOrigin: '200px 200px' }}>
                                         <path d="M 200 175 L 210 185 L 210 215 L 200 225 L 190 215 L 190 185 Z" fill="#000" opacity="0.7" />
@@ -122,7 +129,7 @@ export default function ServicePageHeader() {
                                     <path d="M 190 75 L 185 80 L 190 85" stroke="#fff" strokeWidth="2" fill="none" opacity="0.8" />
                                     <path d="M 210 75 L 215 80 L 210 85" stroke="#fff" strokeWidth="2" fill="none" opacity="0.8" />
                                     <line x1="195" y1="75" x2="205" y2="85" stroke="#fff" strokeWidth="2" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="200" y1="108" x2="200" y2="155" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="0.4s" fill="freeze" />
@@ -141,7 +148,7 @@ export default function ServicePageHeader() {
                                     {/* Mobile phone icon */}
                                     <rect x="302" y="122" width="16" height="24" rx="2" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8" />
                                     <circle cx="310" cy="142" r="1.5" fill="#fff" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="280" y1="150" x2="230" y2="180" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="0.6s" fill="freeze" />
@@ -159,7 +166,7 @@ export default function ServicePageHeader() {
                                     </circle>
                                     {/* Cloud icon */}
                                     <path d="M 318 218 Q 318 212 323 212 Q 325 208 330 208 Q 335 208 337 212 Q 342 212 342 218 Q 342 223 337 223 L 323 223 Q 318 223 318 218 Z" fill="#fff" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="285" y1="220" x2="245" y2="205" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="0.8s" fill="freeze" />
@@ -180,7 +187,7 @@ export default function ServicePageHeader() {
                                     <rect x="286" y="300" width="4" height="13" fill="#fff" opacity="0.8" />
                                     <rect x="292" y="295" width="4" height="18" fill="#fff" opacity="0.8" />
                                     <rect x="298" y="302" width="4" height="11" fill="#fff" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="265" y1="280" x2="225" y2="230" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="1s" fill="freeze" />
@@ -201,7 +208,7 @@ export default function ServicePageHeader() {
                                     <circle cx="177" cy="315" r="2" fill="#fff" opacity="0.8" />
                                     <circle cx="183" cy="315" r="2" fill="#fff" opacity="0.8" />
                                     <circle cx="180" cy="323" r="2" fill="#fff" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="185" y1="295" x2="195" y2="245" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="1.2s" fill="freeze" />
@@ -221,7 +228,7 @@ export default function ServicePageHeader() {
                                     <circle cx="70" cy="217" r="6" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8" />
                                     <path d="M 67 223 L 73 223 L 72 228 L 68 228 Z" fill="#fff" opacity="0.8" />
                                     <line x1="70" y1="211" x2="70" y2="207" stroke="#fff" strokeWidth="1.5" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="98" y1="210" x2="155" y2="200" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="1.4s" fill="freeze" />
@@ -240,7 +247,7 @@ export default function ServicePageHeader() {
                                     {/* Shield icon */}
                                     <path d="M 90 120 L 85 122 L 85 132 Q 85 138 90 140 Q 95 138 95 132 L 95 122 Z" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8" />
                                     <path d="M 88 128 L 90 131 L 94 126" stroke="#fff" strokeWidth="1.5" fill="none" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="120" y1="150" x2="170" y2="180" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="1.6s" fill="freeze" />
@@ -261,7 +268,7 @@ export default function ServicePageHeader() {
                                     <rect x="100" y="287" width="4" height="6" rx="1" fill="#fff" opacity="0.8" />
                                     <rect x="116" y="287" width="4" height="6" rx="1" fill="#fff" opacity="0.8" />
                                     <line x1="110" y1="282" x2="110" y2="279" stroke="#fff" strokeWidth="2" opacity="0.8" />
-                                    
+
                                     {/* Connecting line */}
                                     <line x1="135" y1="270" x2="175" y2="230" stroke="#000" strokeWidth="2" opacity="0" strokeDasharray="5,5">
                                         <animate attributeName="opacity" values="0;0.4;0.4" dur="2s" begin="1.8s" fill="freeze" />

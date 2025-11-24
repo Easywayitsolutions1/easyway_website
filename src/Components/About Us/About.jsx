@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ScrollTextReveal from '../../Common Components/ScrollTextReveal'
+import { useScrollTheme } from '../../Common Components/ScrollContext';
 const imageUrl = "/mnt/data/c0a302b7-5434-42a9-b406-9d524e9e607a.png";
 
 export default function About() {
+  const { setTheme } = useScrollTheme();
+
+  useEffect(() => {
+    // Agar black background hai to 'dark' set karo
+    setTheme('light');
+  }, [setTheme]);
   return (
     <section className="py-20">
       <div className="container mx-auto px-6 lg:px-24">

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Header from "../../Common Components/Header";
 import ProjectPageHeader from "./ProjectPageHeader";
+import Footer from "../../Common Components/Footer"
 
 export default function ProjectShowcase() {
   const containerRef = useRef(null);
@@ -50,6 +51,7 @@ export default function ProjectShowcase() {
           <ProjectCard key={index} item={item} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

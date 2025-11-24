@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react';
+import { useScrollTheme } from '../../Common Components/ScrollContext';
 
 export default function AboutHeaderSection() {
     const [scrollY, setScrollY] = useState(0);
+
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
 
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
@@ -93,13 +101,13 @@ export default function AboutHeaderSection() {
                                 <g className="company-building">
                                     {/* Base/Foundation */}
                                     <rect x="140" y="280" width="120" height="10" fill="#000" opacity="0.9" />
-                                    
+
                                     {/* Building structure */}
                                     <rect x="150" y="180" width="100" height="100" fill="#000" opacity="0.7" stroke="#000" strokeWidth="2">
                                         <animate attributeName="height" values="0;100;100" dur="2s" fill="freeze" />
                                         <animate attributeName="y" values="280;180;180" dur="2s" fill="freeze" />
                                     </rect>
-                                    
+
                                     {/* Windows - representing different departments/teams */}
                                     <g className="windows">
                                         <rect x="165" y="200" width="20" height="20" fill="#fff" opacity="0.6">
@@ -115,7 +123,7 @@ export default function AboutHeaderSection() {
                                             <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite" />
                                         </rect>
                                     </g>
-                                    
+
                                     {/* Door - welcoming entrance */}
                                     <rect x="185" y="250" width="30" height="30" fill="#fff" opacity="0.4" />
                                     <circle cx="208" cy="265" r="2" fill="#000" opacity="0.6" />
@@ -128,19 +136,19 @@ export default function AboutHeaderSection() {
                                         <circle cx="110" cy="260" r="12" fill="#000" opacity="0.8" />
                                         <rect x="104" y="272" width="12" height="20" rx="2" fill="#000" opacity="0.8" />
                                     </g>
-                                    
+
                                     {/* Person 2 - Front Right */}
                                     <g style={{ animation: 'personWalk2 4.5s ease-in-out infinite' }}>
                                         <circle cx="290" cy="260" r="12" fill="#000" opacity="0.8" />
                                         <rect x="284" y="272" width="12" height="20" rx="2" fill="#000" opacity="0.8" />
                                     </g>
-                                    
+
                                     {/* Person 3 - Left Side */}
                                     <g style={{ animation: 'personFloat1 3s ease-in-out infinite' }}>
                                         <circle cx="80" cy="220" r="10" fill="#000" opacity="0.7" />
                                         <rect x="75" y="230" width="10" height="16" rx="2" fill="#000" opacity="0.7" />
                                     </g>
-                                    
+
                                     {/* Person 4 - Right Side */}
                                     <g style={{ animation: 'personFloat2 3.5s ease-in-out infinite' }}>
                                         <circle cx="320" cy="220" r="10" fill="#000" opacity="0.7" />
@@ -153,26 +161,26 @@ export default function AboutHeaderSection() {
                                     {/* Chart base */}
                                     <line x1="50" y1="320" x2="350" y2="320" stroke="#000" strokeWidth="2" opacity="0.4" />
                                     <line x1="50" y1="140" x2="50" y2="320" stroke="#000" strokeWidth="2" opacity="0.4" />
-                                    
+
                                     {/* Growth line */}
-                                    <polyline 
-                                        points="50,310 100,280 150,260 200,220 250,200 300,160" 
-                                        fill="none" 
-                                        stroke="#000" 
+                                    <polyline
+                                        points="50,310 100,280 150,260 200,220 250,200 300,160"
+                                        fill="none"
+                                        stroke="#000"
                                         strokeWidth="3"
                                         strokeDasharray="400"
                                         strokeDashoffset="400"
                                         opacity="0.7"
                                     >
-                                        <animate 
-                                            attributeName="stroke-dashoffset" 
-                                            from="400" 
-                                            to="0" 
-                                            dur="3s" 
+                                        <animate
+                                            attributeName="stroke-dashoffset"
+                                            from="400"
+                                            to="0"
+                                            dur="3s"
                                             fill="freeze"
                                         />
                                     </polyline>
-                                    
+
                                     {/* Data points */}
                                     <circle cx="100" cy="280" r="4" fill="#000" opacity="0">
                                         <animate attributeName="opacity" values="0;0.8;0.8" dur="3s" fill="freeze" />
@@ -189,7 +197,7 @@ export default function AboutHeaderSection() {
                                     <circle cx="300" cy="160" r="4" fill="#000" opacity="0">
                                         <animate attributeName="opacity" values="0;0;0;0;0;0.8" dur="3s" fill="freeze" />
                                     </circle>
-                                    
+
                                     {/* Upward arrow at end */}
                                     <path d="M 300 160 L 295 170 L 305 170 Z" fill="#000" opacity="0">
                                         <animate attributeName="opacity" values="0;0;0;0;0;0.8" dur="3s" fill="freeze" />
@@ -204,7 +212,7 @@ export default function AboutHeaderSection() {
                                     <circle cx="200" cy="80" r="6" fill="#000" opacity="0.8">
                                         <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
                                     </circle>
-                                    
+
                                     {/* Shooting star/Achievement */}
                                     <g style={{ animation: 'shootingStar 3s ease-in-out infinite' }}>
                                         <path d="M 180 60 L 185 70 L 175 70 Z" fill="#000" opacity="0.6" />

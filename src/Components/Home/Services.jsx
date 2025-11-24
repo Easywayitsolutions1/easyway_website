@@ -1,11 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 export default function Services() {
   const cardsRef = useRef(null);
+  const { setTheme } = useScrollTheme();
 
   const { scrollYProgress } = useScroll({
     target: cardsRef,
@@ -68,6 +70,37 @@ export default function Services() {
     navigate("/service");
     window.scrollTo(0, 0);
   };
+
+  // Initial theme set karo - white background
+  useEffect(() => {
+    setTheme('light');
+  }, [setTheme]);
+
+  // Scroll ke saath theme detect karo
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      // Har card ka position check karo
+      const cardElements = document.querySelectorAll('[data-card-theme]');
+      cardElements.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardTop = rect.top + window.scrollY;
+        const cardBottom = cardTop + rect.height;
+        
+        // Agar scroll position card ke beech mein hai
+        if (scrollPosition >= cardTop && scrollPosition <= cardBottom) {
+          const theme = card.getAttribute('data-card-theme');
+          setTheme(theme);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [setTheme]);
 
   return (
     <div className="min-h-screen bg-white text-black mt-[150px]">
@@ -142,8 +175,10 @@ function ServiceCard({ card, isDark, handleNavigate }) {
   return (
     <div
       ref={cardRef}
-      className={`sticky top-32 py-20 flex items-center justify-center relative ${isDark ? "bg-[#101c27] text-white" : "bg-white text-black"
-        }`}
+      data-card-theme={isDark ? 'dark' : 'light'}
+      className={`sticky top-32 py-20 flex items-center justify-center relative ${
+        isDark ? "bg-[#101c27] text-white" : "bg-white text-black"
+      }`}
       onClick={handleNavigate}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -162,10 +197,11 @@ function ServiceCard({ card, isDark, handleNavigate }) {
         >
           <div className="relative w-full h-full">
             <motion.div
-              className={`absolute inset-0 rounded-full border-2 overflow-hidden backdrop-blur-md ${isDark
+              className={`absolute inset-0 rounded-full border-2 overflow-hidden backdrop-blur-md ${
+                isDark
                   ? "border-white/70 bg-white/90"
                   : "border-black/70 bg-black/90"
-                }`}
+              }`}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
@@ -182,8 +218,9 @@ function ServiceCard({ card, isDark, handleNavigate }) {
 
               {/* Marquee Text Behind - moved down */}
               <div
-                className={`absolute left-0 w-[300%] whitespace-nowrap circle-marquee text-[24px] font-black ${isDark ? "text-black" : "text-white"
-                  }`}
+                className={`absolute left-0 w-[300%] whitespace-nowrap circle-marquee text-[24px] font-black ${
+                  isDark ? "text-black" : "text-white"
+                }`}
                 style={{ top: "calc(50% + 0px)", transform: "translateY(-50%)" }}
               >
                 {`View Details · `.repeat(20)}
@@ -203,18 +240,20 @@ function ServiceCard({ card, isDark, handleNavigate }) {
         <div className="flex flex-col gap-10 md:gap-12">
           <div className="flex items-center gap-4">
             <span
-              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border ${isDark
-                ? "border-gray-300 text-white"
-                : "border-gray-400 text-gray-700"
-                } flex items-center justify-center text-lg sm:text-xl font-bold`}
+              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border ${
+                isDark
+                  ? "border-gray-300 text-white"
+                  : "border-gray-400 text-gray-700"
+              } flex items-center justify-center text-lg sm:text-xl font-bold`}
             >
               {card.id}
             </span>
           </div>
 
           <h1
-            className={`heading-text text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight ${isDark ? "text-white" : "text-[#101c27]"
-              }`}
+            className={`heading-text text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight ${
+              isDark ? "text-white" : "text-[#101c27]"
+            }`}
           >
             {card.title}
           </h1>
@@ -223,16 +262,18 @@ function ServiceCard({ card, isDark, handleNavigate }) {
             {card.services.map((service, i) => (
               <li
                 key={i}
-                className={`flex items-center gap-3 ${isDark
-                  ? "text-gray-300 hover:text-white"
-                  : "text-gray-600 hover:text-black"
-                  }`}
+                className={`flex items-center gap-3 ${
+                  isDark
+                    ? "text-gray-300 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
               >
                 <span
-                  className={`w-1.5 h-1.5 rounded-full ${isDark
-                    ? "bg-white/40 hover:bg-white"
-                    : "bg-black/40 hover:bg-black"
-                    }`}
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    isDark
+                      ? "bg-white/40 hover:bg-white"
+                      : "bg-black/40 hover:bg-black"
+                  }`}
                 ></span>
                 {service}
               </li>

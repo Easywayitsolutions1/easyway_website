@@ -3,9 +3,21 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollTextReveal from "../../Common Components/ScrollTextReveal";
 import { useNavigate } from "react-router-dom";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 export default function Projects() {
+
+    const [hoveredCard, setHoveredCard] = useState(null);
+    const [mousePos, setMousePos] = useState({});
+
     const sectionRef = useRef(null);
+
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
 
     const projects = [
         {
@@ -50,11 +62,6 @@ export default function Projects() {
 
     const navigate = useNavigate("");
 
-    // hovered card id
-    const [hoveredCard, setHoveredCard] = useState(null);
-
-    // Mouse position for follow circle
-    const [mousePos, setMousePos] = useState({});
 
     // Refs for DOM nodes and tilt internal state
     const cardRefs = useRef({}); // DOM nodes for outer wrappers

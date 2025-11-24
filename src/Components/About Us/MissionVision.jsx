@@ -1,8 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import SimpleParallax from "simple-parallax-js";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 export default function MissionVisionValues() {
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
+
     const items = [
         {
             title: "Our Mission",
@@ -55,9 +63,8 @@ function ScrollItem({ item, index }) {
     return (
         <div
             ref={ref}
-            className={`flex flex-col ${
-                isImageRight ? 'lg:flex-row' : 'lg:flex-row-reverse'
-            } items-stretch gap-10 my-20`}
+            className={`flex flex-col ${isImageRight ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                } items-stretch gap-10 my-20`}
         >
             {/* Text Section */}
             <div className="
@@ -90,13 +97,13 @@ function ScrollItem({ item, index }) {
                         scale,
                         WebkitMaskImage: useTransform(
                             revealWidth,
-                            (v) => isImageRight 
+                            (v) => isImageRight
                                 ? `linear-gradient(90deg, #000 ${v}%, transparent ${v}%)`  // Left to Right
                                 : `linear-gradient(270deg, #000 ${v}%, transparent ${v}%)` // Right to Left
                         ),
                         maskImage: useTransform(
                             revealWidth,
-                            (v) => isImageRight 
+                            (v) => isImageRight
                                 ? `linear-gradient(90deg, #000 ${v}%, transparent ${v}%)`  // Left to Right
                                 : `linear-gradient(270deg, #000 ${v}%, transparent ${v}%)` // Right to Left
                         ),

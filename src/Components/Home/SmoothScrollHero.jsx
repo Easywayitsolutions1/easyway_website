@@ -7,10 +7,18 @@ import {
 } from "framer-motion";
 import { SiSpacex } from "react-icons/si";
 import { FiArrowRight, FiMapPin } from "react-icons/fi";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Header from "../../Common Components/Header";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 export const SmoothScrollHero = () => {
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
+
     return (
         <div className="bg-white">
             <ReactLenis
@@ -130,9 +138,9 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
             alt={alt}
             className={className}
             ref={ref}
-            style={{ 
+            style={{
                 transform: typeof window !== 'undefined' && window.innerWidth >= 640 ? transform : 'none',
-                opacity 
+                opacity
             }}
         />
     );

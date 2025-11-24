@@ -9,8 +9,15 @@ import { useNavigate } from "react-router-dom";
 import ScrollToTop from "../../Common Components/ScrollToTop";
 import Whatsapp from "../../Common Components/Whatsapp";
 import ServicePageHeader from "./ServicePageHeader";
+import { useScrollTheme } from "../../Common Components/ScrollContext";
 
 export const Services = () => {
+    const { setTheme } = useScrollTheme();
+
+    useEffect(() => {
+        // Agar black background hai to 'dark' set karo
+        setTheme('light');
+    }, [setTheme]);
     return (
         <>
             <SEO
@@ -22,7 +29,7 @@ export const Services = () => {
             <ScrollToTop />
             <Whatsapp />
             <Header />
-            <ServicePageHeader/>
+            <ServicePageHeader />
             <div className="bg-white">
                 <TextParallaxContent
                     imgUrl="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=2000&q=80"

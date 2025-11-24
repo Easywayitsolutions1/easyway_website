@@ -2,15 +2,41 @@ import React, { useState, useEffect } from "react";
 import { ArrowUpRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import CircularText from "./CircularText";
 import { useNavigate } from "react-router-dom";
+import ScrollTop from "./ScrollTop";
+import { useScrollTheme } from "./ScrollContext";
 
 export default function Footer() {
     const navigate = useNavigate("");
     const [isMobile, setIsMobile] = useState(false);
+    const { setTheme } = useScrollTheme();
 
     // Detect if mobile device
     useEffect(() => {
         setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     }, []);
+
+    // Set theme when footer is in view
+    useEffect(() => {
+        const handleScroll = () => {
+            const footer = document.getElementById('footer-section');
+            if (footer) {
+                const rect = footer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Agar footer viewport ke center mein hai
+                const isInView = rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2;
+                
+                if (isInView) {
+                    setTheme('dark'); // Footer dark hai, so white scroll indicator
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial call
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [setTheme]);
 
     const handleWhatsapp = () => {
         const phoneNumber = "917016069441";
@@ -27,22 +53,23 @@ export default function Footer() {
     const mailtoLink = `mailto:${email}`;
 
     return (
-        <div className="p-3 rounded-[15px] overflow-hidden">
+        <div id="footer-section" className="p-3 rounded-[15px] overflow-hidden bg-white">
+            <ScrollTop />   
             <footer className="bg-[#0b1521] rounded-[15px] text-gray-300 py-14 px-6">
                 <div className="rounded-2xl w-[95%] ms-[2.5%] flex flex-row justify-between items-center gap-8 mb-12">
-                    <h2 
-                        className="heading-text uppercase text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight" 
-                        data-aos="fade-right" 
+                    <h2
+                        className="heading-text uppercase text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight"
+                        data-aos="fade-right"
                         data-aos-duration="1500"
                     >
                         Let's Connect<br />With Us
                     </h2>
 
                     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                        <div 
-                            onClick={handleWhatsapp} 
-                            className="relative cursor-pointer rounded-full flex items-center justify-center w-40 h-40" 
-                            data-aos="fade-left" 
+                        <div
+                            onClick={handleWhatsapp}
+                            className="relative cursor-pointer rounded-full flex items-center justify-center w-40 h-40"
+                            data-aos="fade-left"
                             data-aos-duration="1500"
                         >
                             <CircularText
@@ -88,32 +115,32 @@ export default function Footer() {
                     <div>
                         <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
                         <ul className="space-y-3 text-sm">
-                            <li 
-                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition" 
+                            <li
+                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition"
                                 onClick={() => { navigate("/"); window.scrollTo(0, 0); }}
                             >
                                 Home
                             </li>
-                            <li 
-                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition" 
+                            <li
+                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition"
                                 onClick={() => { navigate("/aboutUs"); window.scrollTo(0, 0); }}
                             >
                                 About Us
                             </li>
-                            <li 
-                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition" 
+                            <li
+                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition"
                                 onClick={() => { navigate("/projects"); window.scrollTo(0, 0); }}
                             >
                                 Projects
                             </li>
-                            <li 
-                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition" 
+                            <li
+                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition"
                                 onClick={() => { navigate("/service"); window.scrollTo(0, 0); }}
                             >
                                 Services
                             </li>
-                            <li 
-                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition" 
+                            <li
+                                className="opacity-50 hover:opacity-100 text-white cursor-pointer transition"
                                 onClick={() => { navigate("/contactUs"); window.scrollTo(0, 0); }}
                             >
                                 Contact Us
@@ -140,7 +167,7 @@ export default function Footer() {
                             {/* Phone */}
                             <li className="flex items-center gap-2">
                                 <Phone size={18} />
-                               <a
+                                <a
                                     href="tel:+917016069441"
                                     className="opacity-50 hover:opacity-100 transition-colors duration-200 cursor-pointer hover:underline"
                                 >
@@ -151,7 +178,7 @@ export default function Footer() {
                             {/* Email */}
                             <li className="flex items-center gap-2">
                                 <Mail size={18} />
-                                 <a
+                                <a
                                     href={isMobile ? mailtoLink : gmailLink}
                                     target={isMobile ? "_self" : "_blank"}
                                     rel={isMobile ? "" : "noopener noreferrer"}

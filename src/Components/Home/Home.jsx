@@ -9,6 +9,7 @@ import Whatsapp from '../../Common Components/Whatsapp'
 import { SmoothScrollHero } from './SmoothScrollHero'
 import SEO from '../../Common Components/SEO'
 import ScrollToTop from '../../Common Components/ScrollToTop'
+import ScrollTop from '../../Common Components/ScrollTop'
 
 export default function Home() {
     return (
@@ -19,7 +20,7 @@ export default function Home() {
                 canonicalUrl="https://easywayitsolutions.com/"
             />
             <Whatsapp />
-            <ScrollToTop />
+            <ScrollTop />
             {/* <Header /> */}
             {/* <Testing /> */}
 
