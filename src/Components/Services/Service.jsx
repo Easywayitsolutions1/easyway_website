@@ -6,6 +6,9 @@ import Header from "../../Common Components/Header";
 import SEO from "../../Common Components/SEO";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ScrollToTop from "../../Common Components/ScrollToTop";
+import Whatsapp from "../../Common Components/Whatsapp";
+import ServicePageHeader from "./ServicePageHeader";
 
 export const Services = () => {
     return (
@@ -16,7 +19,10 @@ export const Services = () => {
                 keywords="Web development company in Rajkot, Website developer in Rajkot, Best web development services Rajkot, Custom website development in Rajkot, Ecommerce website development Rajkot, Website designer in Rajkot, Web design company in Rajkot Gujarat, Responsive website design Rajkot, Software development company in Rajkot, Custom software development Rajkot, Software developers in Rajkot, Mobile app development company Rajkot, UI/UX design company in Rajkot, UI designer in Rajkot, UX designer in Rajkot, Video editing services in Rajkot, Professional video editor in Rajkot"
                 canonicalUrl="https://easywayitsolutions.com/service"
             />
+            <ScrollToTop />
+            <Whatsapp />
             <Header />
+            <ServicePageHeader/>
             <div className="bg-white">
                 <TextParallaxContent
                     imgUrl="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=2000&q=80"
@@ -144,7 +150,7 @@ const OverlayCopy = ({ subheading, heading }) => {
 };
 
 const WebDevContent = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/contactUs");
@@ -178,7 +184,7 @@ const WebDevContent = () => {
 };
 
 const UIUXContent = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/contactUs");
@@ -211,7 +217,7 @@ const UIUXContent = () => {
 };
 
 const VideoEditingContent = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/contactUs");
@@ -244,7 +250,7 @@ const VideoEditingContent = () => {
 };
 
 const SocialMediaContent = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/contactUs");
@@ -277,7 +283,7 @@ const SocialMediaContent = () => {
 };
 
 const CustomDevContent = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/contactUs");

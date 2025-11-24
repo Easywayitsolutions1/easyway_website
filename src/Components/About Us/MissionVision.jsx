@@ -85,7 +85,7 @@ function ScrollItem({ item, index }) {
             {/* Image Section */}
             <div className="flex-1 flex">
                 <motion.div
-                    className="relative overflow-hidden rounded-xl shadow-lg border-2 border-gray-300 w-full h-full"
+                    className="relative overflow-hidden rounded-xl shadow-lg border-2 border-gray-300 w-full h-[300px]"
                     style={{
                         scale,
                         WebkitMaskImage: useTransform(

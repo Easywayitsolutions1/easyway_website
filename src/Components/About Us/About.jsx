@@ -18,7 +18,7 @@ export default function About() {
               <span className="uppercase text-sm font-semibold tracking-widest text-gray-800">About us</span>
             </div>
 
-            <ScrollTextReveal className='text-7xl text-[#101c27]' text='Unlock your brands potential with our creative solutions.' />
+            <ScrollTextReveal className='heading-text font-bold text-7xl text-[#101c27]' text='Unlock your brands potential with our creative solutions.' />
 
             <div className="mt-10">
               <a

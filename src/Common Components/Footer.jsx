@@ -68,7 +68,7 @@ export default function Footer() {
                         <div className="flex mt-5 gap-3">
                             {[
                                 { Icon: Instagram, link: "https://www.instagram.com/easyway_it.solutions?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-                                { Icon: Facebook, link: "https://facebook.com/your-profile" },
+                                { Icon: Facebook, link: "https://www.facebook.com/profile.php?id=61571566694772" },
                                 { Icon: Linkedin, link: "https://www.linkedin.com/company/easyway-it-solutions/" }
                             ].map(({ Icon, link }, i) => (
                                 <a

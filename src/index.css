@@ -6,6 +6,7 @@
 
 * {
   font-family: "Open Sans", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .heading-text {
