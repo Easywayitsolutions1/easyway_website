@@ -116,7 +116,7 @@ export default function Services() {
 
       <div className="relative" ref={cardsRef}>
         {/* Sticky Heading Section */}
-        <div className="sticky top-0 z-[50] bg-white py-5">
+        <div className="sticky top-0 z-[40] bg-white py-5">
           <div className="w-full max-w-[95%] mx-auto px-6 md:px-12">
             <p className="text-sm md:text-base uppercase tracking-[0.25em] text-gray-500 font-medium mb-4">
               Services

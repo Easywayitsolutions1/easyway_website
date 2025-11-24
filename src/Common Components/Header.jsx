@@ -199,7 +199,7 @@ export default function Header() {
 
       {/* FULL SCREEN DARK MENU */}
       <div
-        className={`menu-overlay fixed top-0 right-0 w-full h-full z-40 ${
+        className={`menu-overlay fixed top-0 right-0 w-full h-full z-50 ${
           isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
         }`}
         style={{ background: "#101c27" }}

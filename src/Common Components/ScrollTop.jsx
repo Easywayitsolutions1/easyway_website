@@ -34,7 +34,7 @@ export default function ScrollToTop() {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-      className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999]"
+      className="fixed right-4 top-1/2 -translate-y-1/2 z-40"
     >
       <div 
         className="flex flex-col items-center gap-4 cursor-pointer group"
@@ -52,7 +52,7 @@ export default function ScrollToTop() {
           {/* Progress Line */}
           <motion.div
             className={`absolute bottom-0 left-0 right-0 rounded-full origin-bottom transition-colors duration-300 ${
-              isDark ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]' : 'bg-black shadow-[0_0_10px_rgba(0,0,0,0.3)]'
+              isDark ? 'bg-white' : 'bg-black'
             }`}
             style={{
               height: `${scrollProgress}%`,

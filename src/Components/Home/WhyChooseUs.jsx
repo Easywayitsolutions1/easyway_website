@@ -160,7 +160,7 @@ export default function WhyChooseUs() {
     return (
         <section 
             id="why-choose-us-section"
-            className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden bg-white"
+            className="text-[#101c27] py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden"
         >
             <div className="w-[95%] mx-auto">
 
