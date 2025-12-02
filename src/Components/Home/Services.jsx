@@ -9,6 +9,14 @@ export default function Services() {
   const cardsRef = useRef(null);
   const { setTheme } = useScrollTheme();
 
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+  const moveCursorToCenter = () => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    setCursorPos({ x: centerX, y: centerY });
+  };
+
   const { scrollYProgress } = useScroll({
     target: cardsRef,
     offset: ["start start", "end end"],
@@ -71,24 +79,19 @@ export default function Services() {
     window.scrollTo(0, 0);
   };
 
-  // Initial theme set karo - white background
   useEffect(() => {
     setTheme('light');
   }, [setTheme]);
 
-  // Scroll ke saath theme detect karo
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
-      // Har card ka position check karo
       const cardElements = document.querySelectorAll('[data-card-theme]');
       cardElements.forEach((card) => {
         const rect = card.getBoundingClientRect();
         const cardTop = rect.top + window.scrollY;
         const cardBottom = cardTop + rect.height;
-        
-        // Agar scroll position card ke beech mein hai
+
         if (scrollPosition >= cardTop && scrollPosition <= cardBottom) {
           const theme = card.getAttribute('data-card-theme');
           setTheme(theme);
@@ -97,7 +100,7 @@ export default function Services() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setTheme]);
@@ -115,7 +118,7 @@ export default function Services() {
       `}</style>
 
       <div className="relative" ref={cardsRef}>
-        {/* Sticky Heading Section */}
+        {/* Sticky Heading */}
         <div className="sticky top-0 z-[40] bg-white py-5">
           <div className="w-full max-w-[95%] mx-auto px-6 md:px-12">
             <p className="text-sm md:text-base uppercase tracking-[0.25em] text-gray-500 font-medium mb-4">
@@ -140,7 +143,7 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Cards Section */}
+        {/* Cards */}
         {cards.map((card, index) => {
           const isDark = index % 2 !== 0;
           return (
@@ -162,6 +165,19 @@ function ServiceCard({ card, isDark, handleNavigate }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const cardRef = useRef(null);
 
+  // ⭐ NEW LOGIC: Hover enter → circle center me aa jaye
+  const handleMouseEnter = (e) => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setMousePos({
+        x: rect.width / 2,
+        y: rect.height / 2,
+      });
+      setIsHovered(true);
+    }
+  };
+
+  // ⭐ After enter → mouse movement follow kare
   const handleMouseMove = (e) => {
     if (cardRef.current) {
       const rect = cardRef.current.getBoundingClientRect();
@@ -172,6 +188,10 @@ function ServiceCard({ card, isDark, handleNavigate }) {
     }
   };
 
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <div
       ref={cardRef}
@@ -180,9 +200,9 @@ function ServiceCard({ card, isDark, handleNavigate }) {
         isDark ? "bg-[#101c27] text-white" : "bg-white text-black"
       }`}
       onClick={handleNavigate}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Mouse-follow circle */}
       {isHovered && (
@@ -208,15 +228,15 @@ function ServiceCard({ card, isDark, handleNavigate }) {
               transition={{ type: "spring", stiffness: 150, damping: 15 }}
             >
               <div className="absolute top-[-25px] inset-0 flex flex-col items-center justify-center">
-                {/* Static Icon - moved up */}
                 <ArrowUpRight
                   size={28}
                   strokeWidth={3}
-                  className={`z-10 -translate-y-2 ${isDark ? "text-black" : "text-white"}`}
+                  className={`z-10 -translate-y-2 ${
+                    isDark ? "text-black" : "text-white"
+                  }`}
                 />
               </div>
 
-              {/* Marquee Text Behind - moved down */}
               <div
                 className={`absolute left-0 w-[300%] whitespace-nowrap circle-marquee text-[24px] font-black ${
                   isDark ? "text-black" : "text-white"
@@ -270,9 +290,7 @@ function ServiceCard({ card, isDark, handleNavigate }) {
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    isDark
-                      ? "bg-white/40 hover:bg-white"
-                      : "bg-black/40 hover:bg-black"
+                    isDark ? "bg-white/40 hover:bg-white" : "bg-black/40 hover:bg-black"
                   }`}
                 ></span>
                 {service}
@@ -287,7 +305,7 @@ function ServiceCard({ card, isDark, handleNavigate }) {
           transition={{ duration: 0.4 }}
           className="flex justify-center items-end w-full h-full"
         >
-          <div className="relative w-full max-w-[500px] h-[260px] sm:h-[320px] md:h-[360px] overflow-hidden shadow-xl">
+          <div className="relative w_full max-w-[500px] h-[260px] sm:h-[320px] md:h-[360px] overflow-hidden shadow-xl">
             <img
               src={card.image}
               alt="card"

@@ -21,6 +21,7 @@ export const SmoothScrollHero = () => {
 
     return (
         <div className="bg-white">
+        
             <ReactLenis
                 root
                 options={{
@@ -91,21 +92,21 @@ const ParallaxImages = () => {
                 alt="And example of a space launch"
                 start={200}
                 end={200}
-                className="h-[350px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto"
+                className="h-[150px] z-10 object-cover mx-auto sm:mx-0 sm:h-[420px] md:h-[520px] lg:h-[500px] w-[150px] sm:w-auto"
             />
             <ParallaxImg
                 src="/Images/slide_2.jpg"
                 alt="An example of a space launch"
                 start={0}
                 end={-250}
-                className="h-[350px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto sm:ms-[28%]"
+                className="h-[200px] relative z-20 mx-auto sm:mx-0 object-cover sm:h-[420px] md:h-[520px] lg:h-[500px] w-[200px] sm:w-auto sm:ms-[28%]"
             />
             <ParallaxImg
                 src="/Images/slide_3.jpg"
                 alt="Orbiting satellite"
                 start={-300}
                 end={-450}
-                className="h-[350px] sm:h-[420px] md:h-[520px] lg:h-[500px] w-full sm:w-auto sm:ml-auto"
+                className="h-[150px] z-10 mx-auto sm:mx-0 object-cover sm:h-[420px] md:h-[520px] lg:h-[500px] w-[150px] sm:w-auto sm:ml-auto"
             />
             {/* <ParallaxImg
                 src="https://images.unsplash.com/photo-1494022299300-899b96e49893?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

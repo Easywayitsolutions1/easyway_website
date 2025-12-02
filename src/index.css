@@ -3,6 +3,10 @@
    background-color: #101c27;
 } */
 
+@theme{
+  --breakpoint-xs: 480px
+}
+
 * {
   font-family: "Open Sans", sans-serif;
   scroll-behavior: smooth;
