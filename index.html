@@ -3,7 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.easywayitsolutions.com/Images/logo.png" />
+  <!-- DNS Prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.easywayitsolutions.com">
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/Images/blue_logo.png" as="image" fetchpriority="high">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary Meta Tags -->
@@ -31,7 +37,7 @@
     content="EasyWay IT Solutions - Best IT Company in Rajkot | Web Development & Software Development Services" />
   <meta property="og:description"
     content="Leading IT solutions company in Rajkot, Gujarat. Professional IT services, custom web development, software development, UI/UX design, and video editing services." />
-  <meta property="og:image" content="/Images/logo.png" />
+  <meta property="og:image" content="/logo.png" />
   <meta property="og:site_name" content="EasyWay IT Solutions" />
   <meta property="og:locale" content="en_US" />
 
@@ -187,15 +193,23 @@
   }
   </script>
 
+  <!-- Preconnect to Google Fonts for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load fonts asynchronously with font-display: swap -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet">
+  </noscript>
 </head>
 
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <script type="module" src="/src/main.jsx" defer></script>
 </body>
 
 </html>

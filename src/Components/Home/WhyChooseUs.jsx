@@ -96,10 +96,13 @@ const ImageReveal = memo(function ImageReveal({
                     ref={imgRef}
                     src={src}
                     alt={alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover select-none"
                     style={{
                         opacity: loaded ? 1 : 0,
                         transition: "opacity 0.5s ease-out",
+                        willChange: 'opacity, transform',
                     }}
                 />
             </motion.div>

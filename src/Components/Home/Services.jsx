@@ -309,7 +309,10 @@ function ServiceCard({ card, isDark, handleNavigate }) {
             <img
               src={card.image}
               alt="card"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              style={{ willChange: 'transform' }}
             />
           </div>
         </motion.div>

@@ -19,12 +19,19 @@ export default function Header() {
   useEffect(() => {
     if (!isHomePage) return;
 
+    let rafId = null;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 500);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 500);
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [isHomePage]);
 
   // Prevent body scroll when menu is open
@@ -157,6 +164,9 @@ export default function Header() {
               src="/Images/blue_logo.png"
               alt="Logo"
               className="h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px] transition-all duration-500"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
           </a>
 
@@ -325,7 +335,7 @@ export default function Header() {
             transition: "transform 0.3s ease-out",
           }}
         >
-          <img src="/Images/logo.png" alt="Logo" className="h-[60px] sm:h-[80px] md:h-[100px]" />
+          <img src="/Images/logo.png" alt="Logo" className="h-[60px] sm:h-[80px] md:h-[100px]" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>

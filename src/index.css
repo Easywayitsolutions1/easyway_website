@@ -12,6 +12,34 @@
   scroll-behavior: smooth;
 }
 
+/* Performance optimizations */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* GPU acceleration for animations */
+.animate-fadeIn,
+.animate-float,
+.animate-shimmer,
+.animate-slideUp {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Reduce layout shifts */
+img[loading="lazy"] {
+  min-height: 1px;
+}
+
 .heading-text {
   font-family: "Montserrat", sans-serif;
 }
@@ -168,4 +196,9 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: #101c27 #f1f1f1; /* thumb color, track color */
+}
+
+/* Keep the background and full viewport behavior. Tailwind classes also okay. */
+html, body, #root {
+  height: 100%;
 }

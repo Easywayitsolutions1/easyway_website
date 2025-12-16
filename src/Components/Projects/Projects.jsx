@@ -138,9 +138,12 @@ function ProjectCard({ item }) {
         <motion.img
           src={item.image}
           alt={item.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
           style={{
             scale: isHovered ? 1.05 : 1,
+            willChange: 'transform',
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         />

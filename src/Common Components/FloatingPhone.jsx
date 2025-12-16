@@ -57,7 +57,7 @@ const Screen = () => {
     <div className="relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] bg-white">
       
 
-      <img className="h-[100px]" src="/Images/blue_logo.png" alt="" />
+      <img className="h-[100px]" src="/Images/blue_logo.png" alt="" loading="lazy" decoding="async" />
 
       <button className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-sm font-medium text-[#1a2938] backdrop-blur">
         Get Started

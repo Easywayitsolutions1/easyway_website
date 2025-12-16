@@ -19,9 +19,17 @@ export default function About2() {
   const opacity = useTransform(scrollYProgress, [0, 0.1 * scrollEnd], [0, 1]);
 
   // ↔️ Image motion (finish early at 70%)
-  // 📱 Responsive offset for mobile screens
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
-  const mobileOffset = isMobile ? 120 : 350;
+  // 📱 Responsive offset for mobile screens - memoized to avoid recalculation
+  const [mobileOffset, setMobileOffset] = React.useState(350);
+  
+  React.useEffect(() => {
+    const updateOffset = () => {
+      setMobileOffset(window.innerWidth < 640 ? 120 : 350);
+    };
+    updateOffset();
+    window.addEventListener('resize', updateOffset, { passive: true });
+    return () => window.removeEventListener('resize', updateOffset);
+  }, []);
 
   // ↔️ Image motion (finish early at 70%)
   const leftX = useTransform(scrollYProgress, [0.15, scrollEnd], [0, -mobileOffset]);
@@ -54,7 +62,9 @@ export default function About2() {
           <motion.img
             src="/Images/about_1.jpg"
             alt="Left"
-            style={{ x: leftX, rotate: leftRotate }}
+            loading="lazy"
+            decoding="async"
+            style={{ x: leftX, rotate: leftRotate, willChange: 'transform' }}
             className="absolute w-auto h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-2xl shadow-xl z-0"
           />
 
@@ -62,7 +72,9 @@ export default function About2() {
           <motion.img
             src="/Images/about_2.jpg"
             alt="Center"
-            style={{ scale: centerScale }}
+            loading="lazy"
+            decoding="async"
+            style={{ scale: centerScale, willChange: 'transform' }}
             className="absolute w-auto h-[300px] sm:h-[420px] md:h-[520px] lg:h-[600px] rounded-2xl shadow-2xl z-10"
           />
 
@@ -70,7 +82,9 @@ export default function About2() {
           <motion.img
             src="/Images/about_3.jpg"
             alt="Right"
-            style={{ x: rightX, rotate: rightRotate }}
+            loading="lazy"
+            decoding="async"
+            style={{ x: rightX, rotate: rightRotate, willChange: 'transform' }}
             className="absolute w-auto h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-2xl shadow-xl z-0"
           />
         </motion.div>

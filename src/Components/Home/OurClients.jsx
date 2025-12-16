@@ -66,6 +66,8 @@ export default function OurClients() {
                 src={logo}
                 className="h-[100px] w-auto object-contain opacity-100 transition"
                 alt="client-logo"
+                loading="lazy"
+                decoding="async"
               />
             ))}
 

@@ -20,7 +20,7 @@ export default function Whatsapp() {
                 className="whatsapp fixed cursor-pointer bg-[#36c14a] text-white top-[90vh] right-[15px] rounded-full h-14 w-14 flex justify-center items-center shadow-lg transition-all duration-300 hover:scale-110 animate-bounce"
                 style={{ zIndex: "100" }}
             >
-                <img src="/Images/whatsapp.png" className="h-11 w-11" alt="WhatsApp" />
+                <img src="/Images/whatsapp.png" className="h-11 w-11" alt="WhatsApp" loading="lazy" decoding="async" />
             </div>
         </div>
     );

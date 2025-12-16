@@ -139,9 +139,12 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
             alt={alt}
             className={className}
             ref={ref}
+            loading="lazy"
+            decoding="async"
             style={{
                 transform: typeof window !== 'undefined' && window.innerWidth >= 640 ? transform : 'none',
-                opacity
+                opacity,
+                willChange: 'transform, opacity'
             }}
         />
     );

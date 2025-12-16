@@ -89,7 +89,7 @@ export default function Footer() {
                 <div className="w-[95%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                     {/* LOGO + ABOUT */}
                     <div>
-                        <img className="h-[70px]" src="/Images/logo.png" alt="EasyWay IT Solutions" />
+                        <img className="h-[70px]" src="/Images/logo.png" alt="EasyWay IT Solutions" loading="lazy" decoding="async" />
 
                         {/* Social Icons */}
                         <div className="flex mt-5 gap-3">

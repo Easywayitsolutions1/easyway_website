@@ -148,7 +148,9 @@ export default function Projects() {
 
                 // apply transform directly to DOM for smoothness
                 // keep preserve-3d declared via style property (not transition)
+                // Use GPU-accelerated transforms
                 el.style.transform = `perspective(1000px) rotateX(${current.rx}deg) rotateY(${current.ry}deg) scale3d(${current.s}, ${current.s}, ${current.s})`;
+                el.style.willChange = 'transform';
             });
 
             rafId = requestAnimationFrame(animate);
@@ -249,8 +251,11 @@ export default function Projects() {
                                             <img
                                                 src={project.image}
                                                 alt={project.title}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className={`w-full h-full object-cover transition-all duration-700 
                                                 ${hoveredCard === project.id ? "scale-110" : "scale-100"}`}
+                                                style={{ willChange: 'transform' }}
                                             />
 
                                             <div

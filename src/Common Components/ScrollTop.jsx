@@ -9,17 +9,24 @@ export default function ScrollToTop() {
   const isDark = theme === 'dark';
 
   useEffect(() => {
+    let rafId = null;
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = window.pageYOffset;
-      const progress = (scrolled / scrollHeight) * 100;
-      setScrollProgress(progress);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = window.pageYOffset;
+        const progress = (scrolled / scrollHeight) * 100;
+        setScrollProgress(progress);
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const scrollToTop = () => {
