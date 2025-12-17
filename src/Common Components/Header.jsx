@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Example } from "./ClipPathLinks";
 
 export default function Header() {
   const location = useLocation();
@@ -209,9 +210,8 @@ export default function Header() {
 
       {/* FULL SCREEN DARK MENU */}
       <div
-        className={`menu-overlay fixed top-0 right-0 w-full h-full z-50 ${
-          isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
-        }`}
+        className={`menu-overlay fixed top-0 right-0 w-full h-full z-50 ${isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
+          }`}
         style={{ background: "#101c27" }}
       >
         {/* Close Button */}
@@ -232,9 +232,8 @@ export default function Header() {
               background:
                 "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
               backgroundSize: "50px 50px",
-              transform: `translate(${mousePosition.x * 20}px, ${
-                mousePosition.y * 20
-              }px)`,
+              transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20
+                }px)`,
               transition: "transform 0.3s ease-out",
             }}
           />
@@ -242,80 +241,13 @@ export default function Header() {
 
         {/* MENU CONTENT */}
         <div
-          className={`menu-content flex items-center justify-center md:justify-between h-full px-4 sm:px-8 md:px-12 lg:px-20 ${
-            isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
-          }`}
+          className={`menu-content flex items-center justify-center h-full px-4 sm:px-8 md:px-12 lg:px-20 ${isMenuOpen ? "active" : isClosing ? "closing" : "inactive"
+            }`}
         >
-          {/* LEFT NUMBER LIST - Hidden on mobile */}
-          <div className="hidden md:flex flex-col space-y-4 z-10">
-            {["01", "02", "03", "04", "05"].map((num, i) => (
-              <div
-                key={i}
-                className={`text-2xl font-bold transition-all duration-300 ${
-                  getSectionNumber() === num
-                    ? "text-white scale-125"
-                    : "text-white/30"
-                }`}
-              >
-                {num}
-              </div>
-            ))}
+         
+          <div className="w-full">
+            <Example />
           </div>
-
-          {/* CENTER LINKS - Responsive sizing */}
-          <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-6 z-10 items-center md:items-start">
-            {[
-              { name: "Home", link: "/" },
-              { name: "About Us", link: "/aboutUs" },
-              { name: "Services", link: "/service" },
-              { name: "Projects", link: "/projects" },
-              { name: "Contact Us", link: "/contactUs" },
-            ].map((item, i) => (
-              <a
-                key={i}
-                href={item.link}
-                onMouseEnter={() => {
-                  setHoveredIndex(i);
-                  setHoveredSection(item.name);
-                }}
-                onMouseLeave={() => {
-                  setHoveredIndex(null);
-                  setHoveredSection(null);
-                }}
-                onClick={() => handleMenuClick(item.name)}
-                className="heading-text inline-flex uppercase overflow-hidden font-black text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] tracking-[3px] sm:tracking-[5px] md:tracking-[8px] lg:tracking-[10px] text-center"
-                style={{ WebkitTextStroke: "1px white", color: "transparent" }}
-              >
-                {item.name.split("").map((letter, index) => (
-                  <span key={index} className="relative inline-block overflow-hidden">
-                    <span
-                      className={`block transition-transform duration-[600ms] ${
-                        hoveredIndex === i
-                          ? "-translate-y-full"
-                          : "translate-y-0"
-                      }`}
-                      style={{ WebkitTextStroke: "1px white" }}
-                    >
-                      {letter}
-                    </span>
-                    <span
-                      className={`absolute left-0 top-full block transition-transform duration-[600ms] ${
-                        hoveredIndex === i
-                          ? "-translate-y-full"
-                          : "translate-y-0"
-                      }`}
-                      style={{ color: "white" }}
-                    >
-                      {letter}
-                    </span>
-                  </span>
-                ))}
-              </a>
-            ))}
-          </div>
-
-          {/* RIGHT EMPTY SPACE - Hidden on mobile */}
-          <div className="hidden md:block w-20" />
         </div>
       </div>
 
@@ -329,13 +261,12 @@ export default function Header() {
       >
         <div
           style={{
-            transform: `translate(${mousePosition.x * 5}px, ${
-              mousePosition.y * 5
-            }px)`,
+            transform: `translate(${mousePosition.x * 5}px, ${mousePosition.y * 5
+              }px)`,
             transition: "transform 0.3s ease-out",
           }}
         >
-          <img src="/Images/logo.png" alt="Logo" className="h-[60px] sm:h-[80px] md:h-[100px]" loading="lazy" decoding="async" />
+          <img src="/Images/logo.png" alt="Logo" className="h-[60px] sm:h-[80px]" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
